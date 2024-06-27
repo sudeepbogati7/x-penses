@@ -32,10 +32,10 @@ export default function Home() {
     const fetchData = async () => {
 
       try {
-        // if (!token) {
-        //   router.push('/register');
-        //   return;
-        // }
+        if (!token) {
+          router.push('/register');
+          return;
+        }
 
         // fetching user profile data
 
@@ -164,7 +164,7 @@ export default function Home() {
               {filteredExpenses && filteredExpenses.length > 0 ? (
                 filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0)
               ) : (
-                "Loading...."
+                " - "
               )}
             </div>
           </div>
