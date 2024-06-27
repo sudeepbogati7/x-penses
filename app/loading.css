@@ -1,6 +1,7 @@
 /* loader css */
 
 .loader {
+    z-index: 999999;
     width: 350px;
     height: 180px;
     border-radius: 10px;

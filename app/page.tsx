@@ -1,15 +1,17 @@
 'use client';
 
 import Link from "next/link";
-import { useState, useEffect  } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useResponseData } from "@/components/ResponseData";
 import Cookies from 'js-cookie';
+import './page.css';
 import Loading from './loading';
 const token = Cookies.get('token');
 import { ErrorNotification } from "@/components/Notifications";
 import { SuccessNotification } from "@/components/Notifications";
+import ExpenseHeader from "@/components/Header";
 
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
@@ -19,8 +21,7 @@ export default function Home() {
   const router = useRouter();
   const { responseData, setResponseData } = useResponseData();
   const [error, setError] = useState(null);
-
-
+  const [loading, setLoading ] = useState(false);
 
   // check for the token 
 
@@ -37,6 +38,7 @@ export default function Home() {
         // }
 
         // fetching user profile data
+
         const userResponse = await fetch('https://expense-tracking-system.onrender.com/api/user/profile', {
           method: "GET",
           headers: {
@@ -52,6 +54,7 @@ export default function Home() {
         }
 
         // fetching user expenses data 
+        setLoading(true);
         const expenseResponse = await fetch('https://expense-tracking-system.onrender.com/api/expenses/my-expenses', {
           method: "GET",
           headers: {
@@ -60,6 +63,7 @@ export default function Home() {
           }
         });
         const expenseData = await expenseResponse.json();
+        setLoading(false);
         if (expenseResponse.ok) {
           setExpenseData(expenseData.data);
         } else {
@@ -140,15 +144,13 @@ export default function Home() {
   let filteredExpenses = checkedCategories.length > 0 ?
     (expenseData as any)?.filter((expense: any) => checkedCategories.includes(expense.category)) : expenseData;
 
-  console.log("Checked Categories : ", checkedCategories)
-  console.log("Filtered expenses : ", filteredExpenses)
-
   const [animated, setAnimated] = useState(false);
   return (
     <>
       {error && <ErrorNotification error={error} />}
       {responseData && <SuccessNotification successResponse={responseData} />}
-      <Header />
+
+      <ExpenseHeader />
       <div className=" h-screen w-full md:w-2/3 xl:w-1/2 mx-auto">
         {/* header */}
 
@@ -157,11 +159,12 @@ export default function Home() {
           <div className='text-xs w-4/5  text-center mx-auto pb-4 italic tracking-widest'> <span className='text-xl text-orange-500'>&quot; </span>Track Your Money: Take Charge of Your Finances <span className='text-xl text-orange-500'> &quot; </span></div>
           <div className='flex justify-center align-center animate-popup'>
             <span className='text-2xl text-orange-600  mb-14 my-auto'>Rs. </span>
+            {loading && <Loading/>}
             <div className={`p-4 ${filteredExpenses && filteredExpenses.length > 0 ? 'animate-slide-in' : ''} ${filteredExpenses && filteredExpenses.length > 0 ? (filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0).toString().length > 6 ? 'text-3xl' : 'text-7xl') : 'text-7xl'} font-bold`}>
               {filteredExpenses && filteredExpenses.length > 0 ? (
                 filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0)
               ) : (
-                "0"
+                "Loading...."
               )}
             </div>
           </div>
@@ -316,7 +319,8 @@ const AddPopUp = ({ onClose, isOpen, setIsOpen }: any) => {
     }
   };
 
-  const handleExpenseSubmit = async () => {
+  const handleExpenseSubmit = async (e : any) => {
+    e.preventDefault();
     try {
       setLoading(true);
       const response = await fetch('https://expense-tracking-system.onrender.com/api/expenses/add', {
@@ -327,8 +331,11 @@ const AddPopUp = ({ onClose, isOpen, setIsOpen }: any) => {
         },
         body: JSON.stringify(formData)
       });
+      console.log("Form data : ", formData)
+
       setLoading(false);
       const data = await response.json();
+      console.log("Data:", data);
       if (response.ok) {
         setResponseData(data);
         setFormData({
@@ -346,8 +353,6 @@ const AddPopUp = ({ onClose, isOpen, setIsOpen }: any) => {
     }
   };
   if (!isOpen) return null;
-
-  console.log("Form data on add expense : ", formData);
   return (
     <>
       {responseData && <SuccessNotification successResponse={responseData} />}
@@ -653,4 +658,3 @@ function SideBar({ open, setOpen, userData }: any) {
     </Transition.Root>
   )
 }
-

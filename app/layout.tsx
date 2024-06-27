@@ -26,9 +26,8 @@ export default function RootLayout({
       <title> X-pense Tracker </title>
       <Suspense fallback={<Loading />}>
         <body
-          className={`${inter.className} bg-gray-100 dark:bg-[#0d1117]`}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme">
+          className={`${inter.className} bg-gray-100 dark:bg-[#0d1117]`}>
+          <ThemeProvider attribute="class">
             <ResponseDataProvider><main> {children} </main></ResponseDataProvider>
           </ThemeProvider>
         </body>
