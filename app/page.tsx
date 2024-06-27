@@ -188,6 +188,7 @@ export default function Home() {
               onMouseLeave={() => setShowFilters(false)}
               className={`rounded-lg absolute animate-popup mt-6 mx-auto right-1/2 bg-indigo-100 pt-2 dark:bg-gray-800 dark:text-gray-100 border-gray-400 p-2 ${showFilters ? 'block' : 'hidden'}`}
             >
+              {categories.length === 0 && <div> No data  </div>}
               {categories.map((category: any) => (
                 <div className='px-2 flex gap-1 ' key={category}>
                   <input
