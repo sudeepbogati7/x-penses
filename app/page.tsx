@@ -1,5 +1,4 @@
 'use client';
-
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -7,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useResponseData } from "@/components/ResponseData";
 import Cookies from 'js-cookie';
 import './page.css';
-import Loading from './loading';
+import Loading, { ExpenseListLoading } from './loading';
 const token = Cookies.get('token');
 import { ErrorNotification } from "@/components/Notifications";
 import { SuccessNotification } from "@/components/Notifications";
@@ -21,7 +20,7 @@ export default function Home() {
   const router = useRouter();
   const { responseData, setResponseData } = useResponseData();
   const [error, setError] = useState(null);
-  const [loading, setLoading ] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // check for the token 
 
@@ -147,8 +146,8 @@ export default function Home() {
   const [animated, setAnimated] = useState(false);
   return (
     <>
-      {error && <ErrorNotification error={error} />}
-      {responseData && <SuccessNotification successResponse={responseData} />}
+      {/* {error && <ErrorNotification error={error} />}
+      {responseData && <SuccessNotification successResponse={responseData} />} */}
 
       <ExpenseHeader />
       <div className=" h-screen w-full md:w-2/3 xl:w-1/2 mx-auto">
@@ -159,12 +158,15 @@ export default function Home() {
           <div className='text-xs w-4/5  text-center mx-auto pb-4 italic tracking-widest'> <span className='text-xl text-orange-500'>&quot; </span>Track Your Money: Take Charge of Your Finances <span className='text-xl text-orange-500'> &quot; </span></div>
           <div className='flex justify-center align-center animate-popup'>
             <span className='text-2xl text-orange-600  mb-14 my-auto'>Rs. </span>
-            {loading && <Loading/>}
+            {loading && 
+            <div className="animate-pulse">
+                <div className="m-3 h-8 w-24 rounded-lg bg-slate-400 text-lg"></div>
+            </div>}
             <div className={`p-4 ${filteredExpenses && filteredExpenses.length > 0 ? 'animate-slide-in' : ''} ${filteredExpenses && filteredExpenses.length > 0 ? (filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0).toString().length > 6 ? 'text-3xl' : 'text-7xl') : 'text-7xl'} font-bold`}>
               {filteredExpenses && filteredExpenses.length > 0 ? (
                 filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0)
               ) : (
-                " - "
+               <span className={`${loading ? "hidden" : "block"}`}>  - </span>
               )}
             </div>
           </div>
@@ -213,10 +215,11 @@ export default function Home() {
           <button onClick={() => setCheckedCategories([])} className='bg-green-600 text-white text-xs px-2 active:scale-125 transform transition-all duration-300 ease-in-out rounded-xl py-1'>Clear filters </button>
 
         </div>
+        {loading && <div className="mx-auto flex items-center justify-center"><ExpenseListLoading /> </div>}
         <div className='flex flex-col w-full h-2/4 overflow-y-scroll animate-fade-in'>
-          {filteredExpenses && filteredExpenses.length > 0 ? (
+          {filteredExpenses && loading === false && filteredExpenses.length > 0 ? (
             filteredExpenses.map((expense: any, index: any) => (
-              <li
+              <div
                 key={index}
                 className='mt-4 text-gray-700 flex justify-between border-b border-gray-300 px-4 py-4 dark:text-gray-300 dark:border-gray-700 animate-slide-in '
               >
@@ -234,10 +237,12 @@ export default function Home() {
                 </div>
                 {selectedExpense && <EditPopup expenseData={selectedExpense} editPopupOpen={editPopupOpen} onclose={() => setEditPopupOpen(false)} />}
 
-              </li>
+              </div>
             ))
           ) : (
-            <span className="text-gray-700 px-8 mx-auto py-4 dark:text-gray-300"> No expenses added ! </span>
+            <div className={`text-gray-700 px-8 mx-auto py-4 dark:text-gray-300 ${loading ? "hidden" : "block"} `}>
+              No expenses added !
+            </div>
           )}
         </div>
 
@@ -320,7 +325,7 @@ const AddPopUp = ({ onClose, isOpen, setIsOpen }: any) => {
     }
   };
 
-  const handleExpenseSubmit = async (e : any) => {
+  const handleExpenseSubmit = async (e: any) => {
     e.preventDefault();
     try {
       setLoading(true);
@@ -332,11 +337,9 @@ const AddPopUp = ({ onClose, isOpen, setIsOpen }: any) => {
         },
         body: JSON.stringify(formData)
       });
-      console.log("Form data : ", formData)
 
       setLoading(false);
       const data = await response.json();
-      console.log("Data:", data);
       if (response.ok) {
         setResponseData(data);
         setFormData({
@@ -349,7 +352,7 @@ const AddPopUp = ({ onClose, isOpen, setIsOpen }: any) => {
         setError(data);
       }
     } catch (error) {
-      console.error("Error while adding expense:", error);
+
       setError(error as any);
     }
   };
@@ -451,7 +454,8 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
     }
   };
 
-  const handleExpenseSubmit = async () => {
+  const handleExpenseSubmit = async (e: any) => {
+    e.preventDefault();
     try {
       const response = await fetch(`https://expense-tracking-system.onrender.com/api/expenses/edit/${expenseData.expenseId}`, {
         method: "PUT",
@@ -473,7 +477,8 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
     }
   };
 
-  const handleExpenseDelete = async () => {
+  const handleExpenseDelete = async (e: any) => {
+    e.preventDefault();
     try {
       setLoading(true);
       const response = await fetch(`https://expense-tracking-system.onrender.com/api/expenses/delete/${expenseData.expenseId}`, {

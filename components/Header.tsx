@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';
 
 
-export default function Header() {
+export default function ExpenseHeader() {
     const router = useRouter();
 
     const logout = () => {

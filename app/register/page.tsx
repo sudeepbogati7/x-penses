@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import '../globals.css';
 import '../page.css';
+import '../login/login.css';
 import Link from "next/link";
 import { SuccessNotification , ErrorNotification} from "@/components/Notifications";
 import { useResponseData } from "@/components/ResponseData";
@@ -137,7 +138,7 @@ export default function Register() {
                     </form>
                 </div>
             </main>
-            <footer className='flex top-5/6  fixed items-center flex-col bottom-0 border-t-2 border-gray-300 dark:border-gray-600 w-full h-16 bg-gray-200 dark:bg-gray-800'>
+            <footer className='flex top-4/5 fixed items-center flex-col bottom-0 border-t-2 border-gray-300 dark:border-gray-600 w-full h-16 bg-gray-200 dark:bg-gray-800'>
                 <div className='p-2 text-sm font-medium text-gray-600 dark:text-gray-400'>Connect with me </div>
                 <div className="flex pb-2 gap-8 items-center justify-center w-full">
                     <Link className="socialContainer containerOne " href="https://instagram.com/the.sudeep_">

@@ -234,11 +234,11 @@ export default function Dashboard() {
             <Header />
             <main className='flex flex-col items-center justify-center pb-24'>
                 <h2 className='text-center px-2 text-sm font-semibold text-orange-600  w-fit  mx-auto my-3'> Expense Distribution based on Categories </h2>
-                <div className='w-fit mx-auto bg-white  p-4 rounded shadow-lg h-96'>
+                <div className='w-full mx-auto bg-white  p-4 flex items-center justify-center rounded shadow-lg h-96'>
                     <Pie data={data} />
                 </div>
                 <h2 className='text-center px-2 font-bold text-sm text-orange-600  w-fit mx-auto mt-8 my-3'>Daily Expense Analysis </h2>
-                <div className='w-fit mx-auto p-2  w-5/6 bg-white  h-fit shadow rounded-lg'>
+                <div className='w-full mx-auto p-2  w-5/6 bg-white  h-fit shadow rounded-lg'>
                     <Bar data={expeseByDayData} options={expenseByDayOptions}/>
                 </div>
             </main>

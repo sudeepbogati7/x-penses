@@ -24,14 +24,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <title> X-pense Tracker </title>
-      <Suspense fallback={<Loading />}>
-        <body
-          className={`${inter.className} bg-gray-100 dark:bg-[#0d1117]`}>
+      <body
+        className={`${inter.className} bg-gray-100 dark:bg-[#0d1117]`}>
+        <Suspense fallback={<Loading />}>
           <ThemeProvider attribute="class">
             <ResponseDataProvider><main> {children} </main></ResponseDataProvider>
           </ThemeProvider>
-        </body>
-      </Suspense>
+        </Suspense>
+      </body>
     </html>
   );
 }
