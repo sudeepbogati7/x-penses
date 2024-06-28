@@ -143,7 +143,6 @@ export default function Home() {
   let filteredExpenses = checkedCategories.length > 0 ?
     (expenseData as any)?.filter((expense: any) => checkedCategories.includes(expense.category)) : expenseData;
 
-  const [animated, setAnimated] = useState(false);
   return (
     <>
       {/* {error && <ErrorNotification error={error} />}

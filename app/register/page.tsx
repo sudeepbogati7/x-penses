@@ -10,8 +10,9 @@ import { useResponseData } from "@/components/ResponseData";
 import Loading from "../loading";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import Cookies from "js-cookie";
-
+const token = Cookies.get('token');
 export default function Register() {
+
     const { responseData, setResponseData } = useResponseData();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -27,6 +28,13 @@ export default function Register() {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
+
+
+
+    if (token) {
+        router.push('/');
+        return;
+      }
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         try {
