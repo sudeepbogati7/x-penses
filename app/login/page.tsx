@@ -11,8 +11,6 @@ import Header from '@/components/Header';
 import { useRouter } from 'next/navigation';
 import { ErrorNotification, SuccessNotification } from '@/components/Notifications';
 import { useResponseData } from '@/components/ResponseData';
-
-
 import Cookies from 'js-cookie';
 import Loading from '../loading';
 
