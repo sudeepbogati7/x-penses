@@ -27,7 +27,7 @@ export default function Verify() {
         email : email,
     });
     const router = useRouter();
-    // if (localStorage.getItem('token')) router.push('/')
+
 
     const handleChange = (e: any) => {
         const { name, value } = e.target;
@@ -93,7 +93,6 @@ export default function Verify() {
                             <button className='border my-6 rounded-xl p-2 text-md font-medium tracking-wide w-full dark:shadow-lg dark:shadow-orange-600/40 mx-auto hover:bg-orange-700 hover:text-white transition-all duration-300 ease-in-out border-orange-600' > Verify and Register </button>
                         </div>
                         <div onClick={() => router.back()} className='cursor-pointer mx-auto my-4 text-lg'><span className='text-orange-600 border-b border-orange-400'> {'<--'} Back </span></div>
-
                     </form>
                 </div>
             </main>
