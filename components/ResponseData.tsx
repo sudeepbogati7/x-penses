@@ -21,9 +21,7 @@ const initialContextValue: {
     responseData: null,
     setResponseData: () => { } 
 };
-
 const ResponseDataContext = createContext(initialContextValue);
-
 export const useResponseData = () => useContext(ResponseDataContext);
 export const ResponseDataProvider: any = ({ children }: any) => {
     const [responseData, setResponseData] = useState<ResponseData | null>(null);
