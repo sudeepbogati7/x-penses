@@ -7,7 +7,6 @@ interface User {
     createdAt: string;
     confirmPassword: null;
 }
-
 interface ResponseData {
     message: string;
     user: User;
@@ -25,7 +24,6 @@ const initialContextValue: {
 
 const ResponseDataContext = createContext(initialContextValue);
 
-// Custom hook to access the context value
 export const useResponseData = () => useContext(ResponseDataContext);
 export const ResponseDataProvider: any = ({ children }: any) => {
     const [responseData, setResponseData] = useState<ResponseData | null>(null);

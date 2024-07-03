@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { useRouter } from "next/navigation";
 import Cookies from 'js-cookie';
-
 export default function ExpenseHeader() {
     const router = useRouter();
-
     const logout = () => {
         // Remove the token cookie
         Cookies.remove('token');
