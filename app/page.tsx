@@ -618,7 +618,6 @@ function SideBar({ open, setOpen, userData }: any) {
                         onClick={() => setOpen(false)}
                       >
                         <span className="absolute -inset-2.5" />
-                        {/* <span className="sr-only">Close panel</span> */}
                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
                     </div>
