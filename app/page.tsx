@@ -500,8 +500,6 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
     <>
       {loading && <Loading />}
       <div className="fixed inset-0 z-40 min-h-full overflow-y-auto overflow-x-hidden flex items-center justify-center">
-
-
         <div aria-hidden="true" className="fixed inset-0 bg-black opacity-15"></div>
 
         <div className={`relative animate-popup rounded-xl bg-gray-100 gap-4 dark:bg-gray-900 border-2 border-gray-300 dark:border-gray-600 mb-24 h-fit py-4 w-4/5 md:w-2/3 xl:w-1/3 items-center flex flex-col mx-auto  `}>
@@ -520,7 +518,6 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
                 name='expenseTitle'
                 required={editTitle}
                 disabled={!editTitle}
-                // readOnly={!editTitle}
                 onChange={handleChange}
                 placeholder='eg.Food' />
             </div>
