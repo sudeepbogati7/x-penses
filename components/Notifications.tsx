@@ -13,7 +13,7 @@ export function ErrorNotification({ error }: any) {
 
             if (!displayedErrors.includes(errorMessage)) {
                 toast.error(errorMessage, {
-                    autoClose: 7000, // Auto-close after 7 seconds
+                    autoClose: 7000, 
                 });
                 setDisplayedErrors([...displayedErrors, errorMessage]);
             }
@@ -29,7 +29,6 @@ export function ErrorNotification({ error }: any) {
 
     return <ToastContainer />;
 }
-
 export function SuccessNotification({ successResponse }: any) {
     const [displayedError, setDisplayedError] = useState<string | null>(null);
 

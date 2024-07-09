@@ -16,7 +16,6 @@ export default function Loading() {
 export function ExpenseListLoading() {
     return (
         <div className="relative flex w-5/6 animate-pulse gap-2 p-4">
-            {/* <div className="h-12 w-12 rounded-full bg-slate-400"></div> */}
             <div className="flex-1">
                 <div className="mb-3 h-5 w-3/4 rounded-lg bg-slate-400 text-lg"></div>
                 <div className="mb-3 h-5 w-full rounded-lg bg-slate-400 text-lg"></div>
@@ -33,14 +32,3 @@ export function ExpenseListLoading() {
     )
 }
 
-export function TotalExpenseLoading() {
-    return (
-        <div className=" flex w-5/6 animate-pulse gap-2 p-4">
-            {/* <div className="h-12 w-12 rounded-full bg-slate-400"></div> */}
-            <div className="">
-                <div className="mb-3 h-5 w-24 rounded-lg bg-slate-400 text-lg"></div>
-            </div>
-            {/* <div className="absolute bottom-5 right-0 h-4 w-4 rounded-full bg-slate-400"></div> */}
-        </div>
-    )
-}
