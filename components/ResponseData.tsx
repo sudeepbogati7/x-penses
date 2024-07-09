@@ -20,16 +20,13 @@ const initialContextValue: {
     setResponseData: React.Dispatch<React.SetStateAction<ResponseData | null>>;
 } = {
     responseData: null,
-    setResponseData: () => { } // Dummy function that does nothing
+    setResponseData: () => { } 
 };
 
-// Create the context
 const ResponseDataContext = createContext(initialContextValue);
 
 // Custom hook to access the context value
 export const useResponseData = () => useContext(ResponseDataContext);
-
-// Context provider component
 export const ResponseDataProvider: any = ({ children }: any) => {
     const [responseData, setResponseData] = useState<ResponseData | null>(null);
 
