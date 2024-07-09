@@ -446,7 +446,6 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
       setFormData({ ...formData, [name]: value });
     }
   };
-
   const handleExpenseSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -469,7 +468,6 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
       setError(error as any);
     }
   };
-
   const handleExpenseDelete = async (e: any) => {
     e.preventDefault();
     try {
