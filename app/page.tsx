@@ -139,8 +139,6 @@ export default function Home() {
     <>
       {error && <ErrorNotification error={error} />}
       {responseData && <SuccessNotification successResponse={responseData} />}
-
-
       <ExpenseHeader />
       <div className=" h-screen w-full md:w-2/3 xl:w-1/2 mx-auto">
         {/* header */}
