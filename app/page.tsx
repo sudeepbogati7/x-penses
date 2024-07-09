@@ -31,7 +31,7 @@ export default function Home() {
           router.push('/register');
           return;
         }
-          const userResponse = await fetch('https://expense-tracking-system.onrender.com/api/user/profile', {
+        const userResponse = await fetch('https://expense-tracking-system.onrender.com/api/user/profile', {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -132,14 +132,14 @@ export default function Home() {
       setCheckedCategories((prevState: any) => prevState.filter((item: any) => item !== value));
     }
   };
-
   let filteredExpenses = checkedCategories.length > 0 ?
     (expenseData as any)?.filter((expense: any) => checkedCategories.includes(expense.category)) : expenseData;
 
   return (
     <>
-      {/* {error && <ErrorNotification error={error} />}
-      {responseData && <SuccessNotification successResponse={responseData} />} */}
+      {error && <ErrorNotification error={error} />}
+      {responseData && <SuccessNotification successResponse={responseData} />}
+
 
       <ExpenseHeader />
       <div className=" h-screen w-full md:w-2/3 xl:w-1/2 mx-auto">
@@ -150,15 +150,15 @@ export default function Home() {
           <div className='text-xs w-4/5  text-center mx-auto pb-4 italic tracking-widest'> <span className='text-xl text-orange-500'>&quot; </span>Track Your Money: Take Charge of Your Finances <span className='text-xl text-orange-500'> &quot; </span></div>
           <div className='flex justify-center align-center animate-popup'>
             <span className='text-2xl text-orange-600  mb-14 my-auto'>Rs. </span>
-            {loading && 
-            <div className="animate-pulse">
+            {loading &&
+              <div className="animate-pulse">
                 <div className="m-3 h-8 w-24 rounded-lg bg-slate-400 text-lg"></div>
-            </div>}
+              </div>}
             <div className={`p-4 ${filteredExpenses && filteredExpenses.length > 0 ? 'animate-slide-in' : ''} ${filteredExpenses && filteredExpenses.length > 0 ? (filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0).toString().length > 6 ? 'text-3xl' : 'text-7xl') : 'text-7xl'} font-bold`}>
               {filteredExpenses && filteredExpenses.length > 0 ? (
                 filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0)
               ) : (
-               <span className={`${loading ? "hidden" : "block"}`}>  - </span>
+                <span className={`${loading ? "hidden" : "block"}`}>  - </span>
               )}
             </div>
           </div>
