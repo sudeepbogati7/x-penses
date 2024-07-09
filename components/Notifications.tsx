@@ -34,10 +34,9 @@ export function SuccessNotification({ successResponse }: any) {
     const [displayedError, setDisplayedError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Display toast for the error message if it's different from the one already displayed
         if (successResponse && successResponse.message !== displayedError) {
             toast.success(successResponse.message, {
-                autoClose: 7000, // Auto-close after 7 seconds
+                autoClose: 7000,
             });
             setDisplayedError(successResponse.message);
         }
