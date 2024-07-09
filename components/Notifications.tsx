@@ -18,10 +18,9 @@ export function ErrorNotification({ error }: any) {
                 setDisplayedErrors([...displayedErrors, errorMessage]);
             }
         } else if (error && typeof error.error === 'string') {
-            // Handle single string error
             if (!displayedErrors.includes(error.error)) {
                 toast.error(error.error, {
-                    autoClose: 7000, // Auto-close after 7 seconds
+                    autoClose: 7000,
                 });
                 setDisplayedErrors([...displayedErrors, error.error]);
             }
