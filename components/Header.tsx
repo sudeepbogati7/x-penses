@@ -2,9 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { useRouter } from "next/navigation";
-
 import Cookies from 'js-cookie';
-
 
 export default function ExpenseHeader() {
     const router = useRouter();
@@ -63,9 +61,7 @@ export function LogoutPopup({ onClose, logout }: any) {
         } finally {
             setLoading(false);
         }
-
     }
-
     return (
         <div className="fixed inset-0 z-40 min-h-full overflow-y-auto overflow-x-hidden flex items-center justify-center">
             {/* Overlay */}
