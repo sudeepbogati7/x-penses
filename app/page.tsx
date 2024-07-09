@@ -566,6 +566,8 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
   );
 }
 
+
+
 //slide bar
 function SideBar({ open, setOpen, userData }: any) {
   // user created data in simple format
