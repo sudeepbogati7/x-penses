@@ -21,24 +21,17 @@ export default function Home() {
   const { responseData, setResponseData } = useResponseData();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  // check for the token 
-
   const [userData, setUserData] = useState(null);
   const [expenseData, setExpenseData] = useState<any[]>();
 
   useEffect(() => {
     const fetchData = async () => {
-
       try {
         if (!token) {
           router.push('/register');
           return;
         }
-
-        // fetching user profile data
-
-        const userResponse = await fetch('https://expense-tracking-system.onrender.com/api/user/profile', {
+          const userResponse = await fetch('https://expense-tracking-system.onrender.com/api/user/profile', {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
