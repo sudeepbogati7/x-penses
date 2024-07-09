@@ -10,9 +10,6 @@ export default function Loading() {
         </div>
     )
 }
-
-
-
 export function ExpenseListLoading() {
     return (
         <div className="relative flex w-5/6 animate-pulse gap-2 p-4">
