@@ -9,10 +9,8 @@ export function ErrorNotification({ error }: any) {
 
     useEffect(() => {
         if (error && error.error && Array.isArray(error.error)) {
-            // Concatenate error messages into a single string
             const errorMessage = error.error.join(', ');
 
-            // Display toast for the error message if it's different from the ones already displayed
             if (!displayedErrors.includes(errorMessage)) {
                 toast.error(errorMessage, {
                     autoClose: 7000, // Auto-close after 7 seconds
