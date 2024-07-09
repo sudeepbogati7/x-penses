@@ -235,8 +235,6 @@ export default function Home() {
             </div>
           )}
         </div>
-
-
         <AddPopUp isOpen={isPopupOpen} onClose={togglePopup} setIsOpen={setIsPopupOpen} />
 
         <footer className='h-1/12 bg-white dark:bg-darkColor flex border border-gray-300 dark:border-gray-600 p-4 justify-around fixed left-0 bottom-0 w-full'>
@@ -414,11 +412,16 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
   const [customCategory, setCustomCategory] = useState('');
   const [categories, setCategories] = useState([
     { value: 'education', label: '📚 Education' },
-    { value: 'transportation', label: '🚌 Transportation' },
+    { value: 'transport', label: '🚌 Transport' },
     { value: 'foods', label: '🍲 Foods' },
     { value: 'health', label: '🩺 Health' },
     { value: 'tech', label: '🖥️ Tech' },
-    { value: 'furniture', label: ' 🛋️ Furniture' }
+    { value: 'furniture', label: ' 🛋️ Furniture' },
+    { value: 'housing', label: '🏠 Housing' },
+    { value: 'saving', label: '💰 Savings and Investments' },
+    { value: 'entertainment', label: '🎉 Entertainment' },
+    { value: 'clothing', label: '👔 Clothing' },
+    { value: 'accessories', label: '💍 Accessories' },
   ]);
 
   const [editTitle, setEditTitle] = useState(false);
