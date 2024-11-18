@@ -13,13 +13,20 @@
     "@headlessui/react": "^2.1.1",
     "@heroicons/react": "^2.1.4",
     "chart.js": "^4.4.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "js-cookie": "^3.0.5",
+    "lucide-react": "^0.460.0",
     "next": "^14.2.4",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "shadcn": "^2.1.6",
+    "shadcn-ui": "^0.9.3",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

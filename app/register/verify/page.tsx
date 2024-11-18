@@ -15,6 +15,8 @@ import { useResponseData } from '@/components/ResponseData';
 
 import Loading from '@/app/loading';
 
+var API_URL = "http://localhost:3001/api"
+
 
 export default function Verify() {
     const params = useSearchParams();
@@ -38,7 +40,7 @@ export default function Verify() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch('https://expense-tracking-system.onrender.com/api/user/register/verify-otp', {
+            const response = await fetch(`${API_URL}/user/register/verify-otp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -16,6 +16,10 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
+// var API_URL = "https://expense-tracking-system.onrender.com/api" 
+var API_URL = "http://localhost:3001/api"
+
+
 export default function Home() {
   const router = useRouter();
   const { responseData, setResponseData } = useResponseData();
@@ -28,10 +32,10 @@ export default function Home() {
     const fetchData = async () => {
       try {
         if (!token) {
-          router.push('/register');
+          // router.push('/register');
           return;
         }
-        const userResponse = await fetch('https://expense-tracking-system.onrender.com/api/user/profile', {
+        const userResponse = await fetch(`${API_URL}/user/profile`, {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -47,7 +51,7 @@ export default function Home() {
 
         // fetching user expenses data 
         setLoading(true);
-        const expenseResponse = await fetch('https://expense-tracking-system.onrender.com/api/expenses/my-expenses', {
+        const expenseResponse = await fetch(`${API_URL}/expenses/my-expenses`, {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -317,7 +321,7 @@ const AddPopUp = ({ onClose, isOpen, setIsOpen }: any) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch('https://expense-tracking-system.onrender.com/api/expenses/add', {
+      const response = await fetch(`${API_URL}/expenses/add`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -449,7 +453,7 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
   const handleExpenseSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await fetch(`https://expense-tracking-system.onrender.com/api/expenses/edit/${expenseData.expenseId}`, {
+      const response = await fetch(`${API_URL}/expenses/edit/${expenseData.expenseId}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json',
@@ -472,7 +476,7 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch(`https://expense-tracking-system.onrender.com/api/expenses/delete/${expenseData.expenseId}`, {
+      const response = await fetch(`${API_URL}/expenses/delete/${expenseData.expenseId}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',

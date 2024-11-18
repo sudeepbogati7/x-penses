@@ -11,8 +11,10 @@ import Loading from "../loading";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import Cookies from "js-cookie";
 const token = Cookies.get('token');
-export default function Register() {
+// var API_URL = "https://expense-tracking-system.onrender.com/api" 
+var API_URL = "http://localhost:3001/api"
 
+export default function Register() {
     const { responseData, setResponseData } = useResponseData();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -39,7 +41,7 @@ export default function Register() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch('https://expense-tracking-system.onrender.com/api/user/register', {
+            const response = await fetch(`${API_URL}/user/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

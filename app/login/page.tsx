@@ -13,7 +13,8 @@ import { ErrorNotification, SuccessNotification } from '@/components/Notificatio
 import { useResponseData } from '@/components/ResponseData';
 import Cookies from 'js-cookie';
 import Loading from '../loading';
-
+// var API_URL = "https://expense-tracking-system.onrender.com/api" 
+var API_URL = "http://localhost:3001/api"
 export default function Login() {
     const router = useRouter();
     const { responseData, setResponseData } = useResponseData();
@@ -32,7 +33,7 @@ export default function Login() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch('https://expense-tracking-system.onrender.com/api/user/login', {
+            const response = await fetch(`${API_URL}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

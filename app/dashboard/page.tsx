@@ -54,6 +54,9 @@ import Cookies from 'js-cookie';
 
 const token = Cookies.get('token');
 
+// var API_URL = "https://expense-tracking-system.onrender.com/api" 
+var API_URL = "http://localhost:3001/api"
+
 
 export default function Dashboard() {
 
@@ -74,7 +77,7 @@ export default function Dashboard() {
                     return;
                 }
                 // fetching user profile data
-                const userResponse = await fetch('https://expense-tracking-system.onrender.com/api/user/profile', {
+                const userResponse = await fetch(`${API_URL}/user/profile`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
@@ -89,7 +92,7 @@ export default function Dashboard() {
                 }
 
                 // fetching user expenses data 
-                const expenseResponse = await fetch('https://expense-tracking-system.onrender.com/api/expenses/my-expenses', {
+                const expenseResponse = await fetch(`${API_URL}/expenses/my-expenses`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',

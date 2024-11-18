@@ -15,7 +15,6 @@ import { ThemeProvider } from "./theme-provider";
 // };
 
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,13 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <title> X-pense Tracker </title>
-      <body
-        className={`${inter.className} bg-gray-100 dark:bg-[#0d1117]`}>
-        <Suspense fallback={<Loading />}>
-          <ThemeProvider attribute="class">
-            <ResponseDataProvider><main> {children} </main></ResponseDataProvider>
+      <body className={`${inter.className} bg-gray-100 dark:bg-[#0d1117]`}>   
+        <ThemeProvider attribute="class">
+          <ResponseDataProvider><main> {children} </main></ResponseDataProvider>
           </ThemeProvider>
-        </Suspense>
       </body>
     </html>
   );
