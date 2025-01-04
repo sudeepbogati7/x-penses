@@ -5,11 +5,13 @@ import { ArrowUpRight, PieChart, CreditCard, TrendingUp, Shield, Clock, Zap } fr
 import Link from 'next/link'
 import Image from 'next/image'
 import './globals.css'
+import Navbar from '@/components/NavBar'
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gradient-to-b  from-gray-50 to-gray-100">
+      <Navbar />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-100 via-indigo-100 to-white-100">
+      <section className="relative min-h-screen  flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-100 via-indigo-100 to-white-100">
         {/* <div className="absolute inset-0">
           <Image
             src="/investing.svg"
@@ -23,7 +25,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute top-20 left-20 w-64 h-64">
+          className="absolute top-24 left-24 w-56 h-64">
           <Image
             src="/investing.svg"
             alt="Financial graph"
@@ -36,7 +38,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }} 
-          className="absolute bottom-20 right-20 w-64 h-64">
+          className="absolute bottom-20 hidden md:block right-20 w-64 h-64">
           <Image
             src="/savings.svg"
             alt="Savings piggy bank"
@@ -47,7 +49,7 @@ export default function HomePage() {
         </motion.div>
         <div className="relative z-10 text-center p-8 max-w-4xl mx-auto">
           <motion.h1 
-            className="text-4xl md:text-7xl ont-bold text-gray-900 mb-6"
+            className="text-4xl mt-16 md:mt-0 md:text-7xl ont-bold text-gray-900 mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -77,7 +79,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-100">
+      <section className="md:py-20 py-8 bg-gradient-to-b from-white to-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center text-gray-900 mb-12">Key Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -134,10 +136,10 @@ export default function HomePage() {
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-b from-indigo-100 to-purple-100">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6 text-gray-900">Ready to Take Control of Your Finances?</h2>
-          <p className="text-xl mb-8 text-gray-700">Join thousands of users who have transformed their financial lives with our expense tracking system.</p>
+          <h2 className="md:text-4xl text-2xl font-bold mb-6 text-gray-900">Ready to Take Control of Your Finances?</h2>
+          <p className="md:text-xl text-lg mb-8 text-gray-700">Join thousands of users who have transformed their financial lives with our expense tracking system.</p>
           <Link 
-            href="/signup" 
+            href="/register" 
             className="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold  hover:bg-indigo-700 transition duration-300"
           >
             Start for Free &rarr;
@@ -147,7 +149,7 @@ export default function HomePage() {
 
       {/* footer section */}
       <footer className="py-8 bg-gray-900 text-white text-center">
-        <p className="text-sm">© 2024 Sudeep Bogati. All rights reserved.</p>
+        <p className="text-sm">© 2025 Sudeep Bogati. All rights reserved.</p>
       </footer>
     </div>
   )

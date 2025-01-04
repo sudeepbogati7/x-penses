@@ -67,10 +67,9 @@ export default function Register() {
     console.log("Error while registration =====> ", error)
     return (
         <div className='w-full h-full'>
-            <header className='h-16  shadow-md sticky top-0 z-40 bg-gray-100 w-full p-4 dark:shadow-gray-500/30 '>
+            <div className='h-16  shadow-md sticky top-0 z-40 bg-gray-100 w-full p-4 dark:shadow-gray-500/30 '>
                 <div className="md:w-3/4 w-full px-3 flex  justify-between mx-auto items-center">
-                    <Link href={"/"}>
-                        {" "}
+                    <Link href="/">
                         <div className="tracking-widest font-medium flex text-lg border-b-2 hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-900  ease-linear dark:border-gray-500 border-gray-300 my-auto">
                             <span className="text-sm tracking-widest font-normal  border-t-2 border-orange-400">my </span>
                             <span className="text-3xl text-orange-600"> X</span>
@@ -81,8 +80,8 @@ export default function Register() {
                         <span className="flex gap-1 items-center"> <UserIcon className="w-4" /> About </span>
                     </Link>
                 </div>
-            </header>
-            <div className="w-full h-full">
+            </div>
+            <main className="w-full h-full">
                 <div className="flex mt-8 border-black flex-col md:flex-row mx-auto w-full items-center justify-center">
                     <div className="w-1/3 h-full  lg:block hidden ">
                         <div className=" md:block mx-auto w-full ">
@@ -97,7 +96,7 @@ export default function Register() {
                         <SignupFormDemo />
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     )
 }
