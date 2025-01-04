@@ -7,7 +7,6 @@ import Loading from "./loading";
 import { ResponseDataProvider } from "@/components/ResponseData";
 
 const inter = Inter({ subsets: ["latin"] });
-import { ThemeProvider } from "./theme-provider";
 
 // export const metadata: Metadata = {
 //   title: "Create Next App",
@@ -24,9 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <title> X-pense Tracker </title>
       <body className={`${inter.className} bg-gray-100 dark:bg-[#0d1117]`}>   
-        <ThemeProvider attribute="class">
-          <ResponseDataProvider><main> {children} </main></ResponseDataProvider>
-          </ThemeProvider>
+        <ResponseDataProvider><main> {children} </main></ResponseDataProvider>
       </body>
     </html>
   );

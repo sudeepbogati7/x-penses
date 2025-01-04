@@ -4,16 +4,12 @@ import '../page.css';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 
 
 export default function AboutMe() {
     return (
         <>
             <header className="h-16 fixed z-50 bg-gray-200 dark:bg-gray-900 top-0 flex align-center shadow-gray-500/10 shadow-md justify-between w-full p-4 dark:shadow-gray-500/30">
-                <span className="my-auto">
-                    <ThemeSwitcher />
-                </span>
                 <Link href={"/"}>
                     {" "}
                     <div className="tracking-widest font-medium flex text-lg border-b-2 hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-900  ease-linear dark:border-gray-500 border-gray-300 my-auto">

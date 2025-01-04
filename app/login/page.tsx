@@ -3,7 +3,6 @@ import '../globals.css';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import Link from 'next/link';
 import '../login/login.css';
 import '../page.css';
@@ -13,6 +12,7 @@ import { ErrorNotification, SuccessNotification } from '@/components/Notificatio
 import { useResponseData } from '@/components/ResponseData';
 import Cookies from 'js-cookie';
 import Loading from '../loading';
+import LoginPage from '@/components/LoginPage';
 // var API_URL = "https://expense-tracking-system.onrender.com/api" 
 var API_URL = "http://localhost:3001/api"
 export default function Login() {
@@ -59,9 +59,11 @@ export default function Login() {
             {responseData && <SuccessNotification successResponse={responseData} />}
             {error && <ErrorNotification error={error} />}
             {loading && <Loading />}
-            <div className='h-screen w-full'>
+
+
+            <LoginPage />
+            {/* <div className='h-screen w-full'>
                 <header className='h-16  flex align-center shadow-gray-500/10 shadow-md justify-between  w-full p-4 dark:shadow-gray-500/30 '>
-                    <span className='my-auto'><ThemeSwitcher /></span>
                     <Link href={"/"}>
                         {" "}
                         <div className="tracking-widest font-medium flex text-lg border-b-2 hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-900  ease-linear dark:border-gray-500 border-gray-300 my-auto">
@@ -126,7 +128,7 @@ export default function Login() {
                         </Link>
                     </div>
                 </footer>
-            </div>
+            </div> */}
         </>
     )
 }
