@@ -15,6 +15,7 @@ import ExpenseHeader from "@/components/Header";
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import { Sidebar } from "@/components/ui/sideBar";
 
 // var API_URL = "https://expense-tracking-system.onrender.com/api" 
 var API_URL = "http://localhost:3001/api"
@@ -143,7 +144,7 @@ export default function Home() {
     <>
       {error && <ErrorNotification error={error} />}
       {responseData && <SuccessNotification successResponse={responseData} />}
-      <ExpenseHeader />
+      <Sidebar open={true} animate={true} />
       <div className=" h-screen w-full md:w-2/3 xl:w-1/2 mx-auto">
         {/* header */}
 
@@ -252,7 +253,7 @@ export default function Home() {
             <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 20 20" height="20" fill="none" className="svg-icon"><g strokeWidth="1.5" strokeLinecap="round" stroke="#de8a2a"><circle r="7.5" cy="10" cx="10"></circle><path d="m9.99998 7.5v5"></path><path d="m7.5 9.99998h5"></path></g></svg>
             <span className="lable">Add</span>
           </button>
-          <SideBar userData={userData} open={open} setOpen={setOpen} />
+          {/* <SideBar userData={userData} open={open} setOpen={setOpen} /> */}
           <button
             onClick={toggleSideBar}
             className=' border-b-4 border-blue-600 active:scale-125 transform animate-scale-in bg-orange-200 p-2 my-auto rounded-full active:bg-orange-700 dark:active:bg-orange-800 duration-200 transition-all  dark:bg-orange-400'>
@@ -573,87 +574,87 @@ function EditPopup({ expenseData, editPopupOpen, onclose }: any) {
 
 
 //slide bar
-function SideBar({ open, setOpen, userData }: any) {
-  // user created data in simple format
-  let joinedDate = new Date((userData as any)?.user.createdAt)
-  const formattedDate = joinedDate.toDateString();
+// function SideBar({ open, setOpen, userData }: any) {
+//   // user created data in simple format
+//   let joinedDate = new Date((userData as any)?.user.createdAt)
+//   const formattedDate = joinedDate.toDateString();
 
-  return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-in-out duration-500"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in-out duration-500"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
+//   return (
+//     <Transition.Root show={open} as={Fragment}>
+//       <Dialog as="div" className="relative z-10" onClose={setOpen}>
+//         <Transition.Child
+//           as={Fragment}
+//           enter="ease-in-out duration-500"
+//           enterFrom="opacity-0"
+//           enterTo="opacity-100"
+//           leave="ease-in-out duration-500"
+//           leaveFrom="opacity-100"
+//           leaveTo="opacity-0"
+//         >
+//           <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+//         </Transition.Child>
 
-        <div className="fixed inset-0  overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-              <Transition.Child
-                as={Fragment}
-                enter="transform transition ease-in-out duration-500 sm:duration-700"
-                enterFrom="translate-x-full"
-                enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-700"
-                leaveFrom="translate-x-0"
-                leaveTo="translate-x-full"
-              >
-                <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
-                  <Transition.Child
-                    as={Fragment}
-                    enter="ease-in-out duration-500"
-                    enterFrom="opacity-0"
-                    enterTo="opacity-100"
-                    leave="ease-in-out duration-500"
-                    leaveFrom="opacity-100"
-                    leaveTo="opacity-0"
-                  >
-                    <div className="absolute left-14 top-0 -ml-0 flex pr-0 pt-4 sm:-ml-10 sm:pr-4">
-                      <button
-                        type="button"
-                        className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                        onClick={() => setOpen(false)}
-                      >
-                        <span className="absolute -inset-2.5" />
-                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
-                    </div>
-                  </Transition.Child>
-                  <div className="flex items-center  h-full w-3/4 absolute right-0 flex-col overflow-y-scroll bg-white dark:bg-darkColor py-4 shadow-xl ">
-                    <div className="px-4 sm:px-6 overflow-hidden">
-                      <Dialog.Title className="border-b-2 border-orange-400 my-2 text-base font-semibold leading-6 dark:text-gray-200 text-gray-900 ">
-                        Profile
-                      </Dialog.Title>
-                    </div>
-                    <div className='animate-scale-in duration-500 flex flex-col items-center bg-blue-200 dark:bg-gray-700 rounded-lg w-4/5 justify-center h-auto py-2'>
-                      <div className='bg-orange-600 rounded-full mt-4 w-fit h-fit'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="bi bi-person-fill text-white dark:text-indigo-300" viewBox="0 0 16 16">
-                          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
-                        </svg>
-                      </div>
-                      <div className='pt-2 font-bold text-lg tracking-wide'>{userData ? userData.user.fullName : "NO DATA"}</div>
-                      <span className='text-xs p-1 italic '>{userData ? userData.user.email : "nodata@user.com"}</span>
-                      <div className='text-xs tracking-wide p-2'>Joined on : {formattedDate}</div>
-                    </div>
-                    <div className=' flex flex-wrap items-center justify-center flex-col text-sm text-gray-700 gap-2 absolute bottom-0 w-full py-4 h-1/6 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-500 dark:text-gray-300 '>
-                      <span className='border-b border-gray-200 w-fit mx-auto'>By Sudeep Bogati</span>
-                      <Link href={'/about'} className=' text-blue-500 hover:underline w-fit'>About</Link>
-                      <span className='text-sm'>info@sudipbogati.com.np</span>
-                    </div>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </div>
-      </Dialog>
-    </Transition.Root>
-  )
-}
+//         <div className="fixed inset-0  overflow-hidden">
+//           <div className="absolute inset-0 overflow-hidden">
+//             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+//               <Transition.Child
+//                 as={Fragment}
+//                 enter="transform transition ease-in-out duration-500 sm:duration-700"
+//                 enterFrom="translate-x-full"
+//                 enterTo="translate-x-0"
+//                 leave="transform transition ease-in-out duration-500 sm:duration-700"
+//                 leaveFrom="translate-x-0"
+//                 leaveTo="translate-x-full"
+//               >
+//                 <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
+//                   <Transition.Child
+//                     as={Fragment}
+//                     enter="ease-in-out duration-500"
+//                     enterFrom="opacity-0"
+//                     enterTo="opacity-100"
+//                     leave="ease-in-out duration-500"
+//                     leaveFrom="opacity-100"
+//                     leaveTo="opacity-0"
+//                   >
+//                     <div className="absolute left-14 top-0 -ml-0 flex pr-0 pt-4 sm:-ml-10 sm:pr-4">
+//                       <button
+//                         type="button"
+//                         className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+//                         onClick={() => setOpen(false)}
+//                       >
+//                         <span className="absolute -inset-2.5" />
+//                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+//                       </button>
+//                     </div>
+//                   </Transition.Child>
+//                   <div className="flex items-center  h-full w-3/4 absolute right-0 flex-col overflow-y-scroll bg-white dark:bg-darkColor py-4 shadow-xl ">
+//                     <div className="px-4 sm:px-6 overflow-hidden">
+//                       <Dialog.Title className="border-b-2 border-orange-400 my-2 text-base font-semibold leading-6 dark:text-gray-200 text-gray-900 ">
+//                         Profile
+//                       </Dialog.Title>
+//                     </div>
+//                     <div className='animate-scale-in duration-500 flex flex-col items-center bg-blue-200 dark:bg-gray-700 rounded-lg w-4/5 justify-center h-auto py-2'>
+//                       <div className='bg-orange-600 rounded-full mt-4 w-fit h-fit'>
+//                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" className="bi bi-person-fill text-white dark:text-indigo-300" viewBox="0 0 16 16">
+//                           <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+//                         </svg>
+//                       </div>
+//                       <div className='pt-2 font-bold text-lg tracking-wide'>{userData ? userData.user.fullName : "NO DATA"}</div>
+//                       <span className='text-xs p-1 italic '>{userData ? userData.user.email : "nodata@user.com"}</span>
+//                       <div className='text-xs tracking-wide p-2'>Joined on : {formattedDate}</div>
+//                     </div>
+//                     <div className=' flex flex-wrap items-center justify-center flex-col text-sm text-gray-700 gap-2 absolute bottom-0 w-full py-4 h-1/6 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-500 dark:text-gray-300 '>
+//                       <span className='border-b border-gray-200 w-fit mx-auto'>By Sudeep Bogati</span>
+//                       <Link href={'/about'} className=' text-blue-500 hover:underline w-fit'>About</Link>
+//                       <span className='text-sm'>info@sudipbogati.com.np</span>
+//                     </div>
+//                   </div>
+//                 </Dialog.Panel>
+//               </Transition.Child>
+//             </div>
+//           </div>
+//         </div>
+//       </Dialog>
+//     </Transition.Root>
+//   )
+// }

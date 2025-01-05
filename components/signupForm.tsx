@@ -81,7 +81,7 @@ export function SignupFormDemo() {
         Welcome to Expense Tracking System
       </h2>
       <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-        Let's get started to monitor your expenses and take control of your finances !
+        Lets get started to monitor your expenses and take control of your finances !
       </p>
 
       <form className="my-8" onSubmit={handleSubmit}>

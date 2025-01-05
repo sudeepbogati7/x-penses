@@ -46,7 +46,7 @@ export default function LoginPage() {
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-gray-600">Welcome Back!</h2>
-                        <p className="text-gray-600 mt-2">We're glad to see you again. Let's get your finances in order.</p>
+                        <p className="text-gray-600 mt-2">We are glad to see you again. Lets get your finances in order.</p>
                         <div className="mt-4 flex justify-center">
                             <div className="w-16 h-1 bg-gray-300 rounded-full"></div>
                         </div>
