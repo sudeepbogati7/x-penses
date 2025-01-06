@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-
+import { Menu } from 'lucide-react'
+import { request } from "http"
 const SidebarContext = React.createContext<{
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -32,7 +33,7 @@ export const Sidebar = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "fixed  inset-y-0 left-0 z-50 w-64 transform transition-transform duration-200 ease-in-out",
+        "fixed inset-y-0 left-0 z-50 w-64 transform transition-all duration-300 ease-in-out",
         isOpen ? "translate-x-0" : "-translate-x-full",
         "md:relative md:translate-x-0",
         className
@@ -55,18 +56,6 @@ export const SidebarHeader = React.forwardRef<
 ))
 SidebarHeader.displayName = "SidebarHeader"
 
-export const SidebarFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("p-4 border-t border-gray-200 dark:border-gray-700", className)}
-    {...props}
-  />
-))
-SidebarFooter.displayName = "SidebarFooter"
-
 export const SidebarContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -78,6 +67,18 @@ export const SidebarContent = React.forwardRef<
   />
 ))
 SidebarContent.displayName = "SidebarContent"
+
+export const SidebarFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("p-4 border-t border-gray-200 dark:border-gray-700", className)}
+    {...props}
+  />
+))
+SidebarFooter.displayName = "SidebarFooter"
 
 export const SidebarMenu = React.forwardRef<
   HTMLUListElement,
@@ -97,20 +98,26 @@ SidebarMenuItem.displayName = "SidebarMenuItem"
 
 export const SidebarMenuButton = React.forwardRef<
   HTMLButtonElement,
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { active?: boolean }
->(({ className, active, ...props }, ref) => (
-  <button
-    ref={ref}
-    className={cn(
-      "flex items-center w-full px-4 py-2 text-sm font-medium rounded-md",
-      "hover:bg-gray-100 dark:hover:bg-gray-800",
-      "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-900",
-      active && "bg-gray-100 dark:bg-gray-800",
-      className
-    )}
-    {...props}
-  />
-))
+  React.ButtonHTMLAttributes<HTMLButtonElement> & { 
+    active?: boolean
+  }
+>(({ className, active, children, ...props }, ref) => {
+  return (
+    <button
+      ref={ref}
+      className={cn(
+        "flex items-center w-full px-2 py-2  text-sm font-medium rounded-md",
+        "hover:bg-gray-100 dark:hover:bg-gray-800",
+        "focus:outline-none  transition-all duration-300  dark:focus:ring-offset-gray-900",
+        active && "bg-white border-l-4 border-indigo-600 dark:bg-gray-800",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+})
 SidebarMenuButton.displayName = "SidebarMenuButton"
 
 export const SidebarTrigger = React.forwardRef<
@@ -123,7 +130,7 @@ export const SidebarTrigger = React.forwardRef<
       ref={ref}
       onClick={() => setIsOpen(prev => !prev)}
       className={cn(
-        "md:hidden p-2 rounded-md text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500",
+        "p-2 rounded-md text-gray-500 hover:text-gray-600 focus:outline-none ",
         className
       )}
       {...props}
@@ -132,3 +139,18 @@ export const SidebarTrigger = React.forwardRef<
 })
 SidebarTrigger.displayName = "SidebarTrigger"
 
+export function Header() {
+  const { setIsOpen } = useSidebar()
+
+  return (
+    <header className="sticky top-0 z-40 md:pl-64 border-b bg-background">
+      <div className="md:hidden flex h-14 items-center px-4">
+        <button className="md:hidden" onClick={() => setIsOpen(true)}>
+          <Menu className="h-6 w-6" />
+          <span className="sr-only">Open Sidebar</span>
+        </button>
+        <h1 className="ml-4 text-lg font-semibold"> Overview </h1>
+      </div>
+    </header>
+  )
+}

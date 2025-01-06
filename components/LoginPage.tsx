@@ -20,16 +20,19 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen flex  flex-col md:flex-row bg-gray-100">
+        <div className="min-h-screen flex  flex-col md:flex-row ">
             {/* Illustration Side */}
-            <div className='w-full md:w-3/4 bg-gradient-to-br from-gray-700 via-15% via-slate-900  to-black'>
+            <div className='w-full md:w-3/4 '
+                style={{ backgroundImage: 'url(/epense_ai.webp)' }}
+            >
+                
                 <div
                     className="w-full h-full flex items-center card justify-center p-8"
                 >
                     <div className=''>
                         <div className="text-white ">
-                            <h1 className="text-3xl font-bold mb-3">Track Your <span className='text-red-600'>Expenses</span></h1>
-                            <p className="mb-8">Gain control of your finances with our powerful expense tracking system.</p>
+                            <h1 className="text-4xl font-bold mb-3">Track Your <span className='text-red-600'>Expenses</span></h1>
+                            <p className="mb-8 text-gray-100">Gain control of your finances with our powerful expense tracking system.</p>
                             <div className="grid grid-cols-2 gap-4">
                                 <FeatureIcon Icon={DollarSign} text="Budget Management" />
                                 <FeatureIcon Icon={PieChart} text="Expense Analytics" />
@@ -42,7 +45,7 @@ export default function LoginPage() {
             </div>
 
             {/* Login Form Side */}
-            <div className="md:w-1/2 flex items-center justify-center p-8">
+            <div className="md:w-1/2 flex bg-gradient-to-br from-white via-indigo-200 to-white  items-center justify-center p-8">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-gray-600">Welcome Back!</h2>
@@ -85,11 +88,9 @@ export default function LoginPage() {
 
                     <div className="mt-6">
                         <div className="relative">
-                            <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-gray-300"></div>
-                            </div>
+                           
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-2 bg-gray-100 text-gray-500">
+                                <span className="px-2  text-gray-600 ">
                                     Dont have an account yet?
                                 </span>
                             </div>

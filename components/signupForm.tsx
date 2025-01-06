@@ -64,7 +64,7 @@ export function SignupFormDemo() {
   };
   console.log("formData:", formData);
   return (
-    <div className="w-full  mx-auto p-5 md:px-16  bg-gray-100 dark:bg-black">
+    <div className="w-full  mx-auto p-5 md:px-16   dark:bg-black">
       <div>
         {error && (
           <div className="p-4 bg-red-100 dark:bg-red-600 text-red-800 dark:text-red-100 rounded-md mb-4">

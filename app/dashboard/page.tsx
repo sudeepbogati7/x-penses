@@ -71,11 +71,7 @@ export default function Dashboard() {
         const fetchData = async () => {
 
           try {
-                if (!token) {
-                    router.push('/register');
-                    return;
-                }
-                // fetching user profile data
+               // fetching user profile data
                 const userResponse = await fetch(`${API_URL}/user/profile`, {
                     method: "GET",
                     headers: {
