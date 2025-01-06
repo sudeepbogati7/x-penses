@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -51,12 +51,13 @@ export default function Navbar() {
 
   console.log("is scrolled ==> ", isScrolled)
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+    <nav className={`fixed w-full py-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0">
-              <span className={`text-xl font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-600'}`}>ExpenseTracker</span>
+            <Link href="/" className="flex-shrink-0 w-full">
+             <Image src="/logo1.gif" width={100} height={100} alt='logo'></Image>
+              {/* <span className={`text-xl font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-600'}`}>ExpenseTracker</span> */}
             </Link>
           </div>
           <div className="hidden md:block">

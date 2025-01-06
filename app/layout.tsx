@@ -22,7 +22,7 @@ export default function RootLayout({
 
   const pathname = usePathname(); // Get the current path
   // List of paths where the sidebar should be hidden
-  const excludedPaths = ["/home", "/register", "/login", "/overview"];
+  const excludedPaths = ["/home", "/register", "/login", "/overview", '/register/verify'];
 
   // Check if the current route matches any of the excluded paths
   const hideSidebar = excludedPaths.includes(pathname);
