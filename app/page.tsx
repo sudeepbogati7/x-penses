@@ -32,6 +32,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        router.push('/home')
         if (!token) {
           // router.push('/register');
           return;
