@@ -12,15 +12,13 @@ import {
   IconBrandGoogle,
   IconBrandOnlyfans,
 } from "@tabler/icons-react";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 export function SignupFormDemo() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [responseData, setResponseData] = useState(null);
-
-  var API_URL = "http://localhost:3001/api"
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +33,8 @@ export function SignupFormDemo() {
         body: JSON.stringify(formData)
       });
       const data = await response.json();
-      console.log("data while regisetring:", data);
+    
+      console.log("data while regisetring:==> ", data);
       setLoading(false);
       if (response.ok) {
         setResponseData(data);

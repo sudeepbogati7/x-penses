@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useResponseData } from "@/components/ResponseData";
 import Cookies from 'js-cookie';
 import './page.css';
-import Loading, { ExpenseListLoading } from './loading';
+import Loading from './loading';
 const token = Cookies.get('token');
 import { ErrorNotification } from "@/components/Notifications";
 import { SuccessNotification } from "@/components/Notifications";
@@ -210,7 +210,6 @@ export default function Home() {
           <button onClick={() => setCheckedCategories([])} className='bg-green-600 text-white text-xs px-2 active:scale-125 transform transition-all duration-300 ease-in-out rounded-xl py-1'>Clear filters </button>
 
         </div>
-        {loading && <div className="mx-auto flex items-center justify-center"><ExpenseListLoading /> </div>}
         <div className='flex flex-col w-full h-2/4 overflow-y-scroll animate-fade-in'>
           {filteredExpenses && loading === false && filteredExpenses.length > 0 ? (
             filteredExpenses.map((expense: any, index: any) => (

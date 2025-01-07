@@ -6,16 +6,18 @@ import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import Header from '@/components/Header';
-
-import { useRouter , useSearchParams} from 'next/navigation';
+import {
+    InputOTP,
+    InputOTPGroup,
+    InputOTPSeparator,
+    InputOTPSlot,
+} from "@/components/ui/input-otp"
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ErrorNotification, SuccessNotification } from '@/components/Notifications';
 import { useResponseData } from '@/components/ResponseData';
-
-import Loading from '@/app/loading';
+import { ArrowLeft } from 'lucide-react';
 
 var API_URL = "http://localhost:3001/api"
-
 
 export default function Verify() {
     const params = useSearchParams();
@@ -25,7 +27,7 @@ export default function Verify() {
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         otp: '',
-        email : email,
+        email: email,
     });
     const router = useRouter();
 
@@ -60,35 +62,36 @@ export default function Verify() {
         }
     };
 
-    console.log("Error from verify page : ",error)
+    console.log("Error from verify page : ", error)
     return (
-            <main>
-                {loading && <Loading />}
-                {error && <ErrorNotification error={error} />}
-                {responseData && <SuccessNotification successResponse={responseData} />}
-                <div className='flex flex-col flex-wrap align-center justify-center container  p-4 w-full'>
-                    <span className='text-center text-xl font-medium p-2'>Check your email for  <span className='text-orange-600 border-b border-orange-300'> OTP </span> </span>
-                    <form
-                        onSubmit={handleSubmit}
-                        className='flex flex-col p-6 justify-center mx-auto w-full'>
-                        <div className='flex flex-col w-full p-4'>
-                            <label className='mx-2 font-medium tracking-wide' htmlFor="email">OTP</label>
-                            <input
-                                type="text"
-                                name='otp'
-                                value={formData.otp}
-                                onChange={handleChange}
-                                placeholder='s4e1ps'
-                                className='w-full border-2 border-gray-200 dark:border-none p-2 focus:border-2 focus:shadow-orange-400/10 focus:shadow-lg transision duration-300 ease-in-out rounded-lg outline-none'
-                            />
-                        </div>
-                        <div className='px-4'>
-                            <button className='border my-6 rounded-xl p-2 text-md font-medium tracking-wide w-full dark:shadow-lg dark:shadow-orange-600/40 mx-auto hover:bg-orange-700 hover:text-white transition-all duration-300 ease-in-out border-orange-600' > Verify and Register </button>
-                        </div>
-                        <div onClick={() => router.back()} className='cursor-pointer mx-auto my-4 text-lg'><span className='text-orange-600 border-b border-orange-400'> {'<--'} Back </span></div>
-                    </form>
+        <main className=''>
+            <form
+                onSubmit={handleSubmit}
+                className='bg-white rounded px-8 py-12 flex flex-col w-fit mx-auto items-center justify-centers'>
+                <h1 className='text-xl font-medium'> Check your email {email} for OTP </h1>
+                <div className='flex flex-col w-full p-4'>
+                    <label className='text-sm font-medium tracking-wide' htmlFor="email">Enter verification code </label>
+                    <InputOTP maxLength={6}>
+                        <InputOTPGroup className='flex gap-2'>
+                            <InputOTPSlot className='border border-gray-400' index={0} />
+                            <InputOTPSlot className='border border-gray-400' index={1} />
+                            <InputOTPSlot className='border border-gray-400' index={2} />
+                            <InputOTPSlot className='border border-gray-400' index={3} />
+                            <InputOTPSlot className='border border-gray-400' index={4} />
+                            <InputOTPSlot className='border border-gray-400' index={5} />
+                        </InputOTPGroup>
+                    </InputOTP>
                 </div>
-            </main>
+                <div className="flex w-full flex-col gap-4">
+                    <button className="w-full bg-black text-white rounded  p-1 hover:bg-gray-800" >
+                        Verify and Register
+                    </button>
+                    <button className="text-muted-foreground flex items-center transition-all duration-200  w-fit  mx-auto hover:text-black   text-center justify-center gap-2">
+                        <ArrowLeft className="w-4 h-4" /><span className='hover:border-gray-500 border-b border-transparent'> Back</span>
+                    </button>
+                </div>
+            </form>
+        </main>
     )
 }
 
