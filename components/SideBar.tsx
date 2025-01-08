@@ -18,11 +18,11 @@ import {
 } from "@/components/ui/sideBar"
 
 const menuItems = [
-  { icon: ViewIcon, label: "Overview", href: '/' },
-  { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
-  { icon: BarChart2, label: 'Analytics', href: '/analytics' },
-  { icon: FileText, label: 'Reports', href: '/reports' },
-  { icon: Settings, label: 'Settings', href: '/settings' },
+  { icon: ViewIcon, label: "Overview", href: '/tracker' },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '/tracker/dashboard' },
+  { icon: BarChart2, label: 'Analytics', href: '#' },
+  { icon: FileText, label: 'Reports', href: '#' },
+  { icon: Settings, label: 'Settings', href: '#' },
 ]
 
 export function AppSidebar() {

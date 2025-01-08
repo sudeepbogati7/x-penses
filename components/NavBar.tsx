@@ -35,11 +35,13 @@ const navItems = [
   },
 ]
 
-export default function Navbar() {
+export default function Navbar({bgColor} : any) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [openItem, setOpenItem] = useState<string | null>(null)
 
+
+  console.log("background color =>", bgColor)
   useEffect(() => {
     const handleScroll = () => {
       console.log("scroll y ==> ", window.scrollY)
@@ -51,7 +53,7 @@ export default function Navbar() {
 
   console.log("is scrolled ==> ", isScrolled)
   return (
-    <nav className={`fixed w-full py-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+    <nav className={`fixed w-full py-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : `${bgColor}`}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -116,7 +118,7 @@ export default function Navbar() {
           </div>
           <div className="hidden md:block">
             <Link
-              href="/register"
+              href="/auth/register"
               className={`px-4 py-2 rounded-md text-sm font-medium ${
                 isScrolled
                   ? 'bg-gray-800 text-white hover:bg-gray-700'
@@ -177,7 +179,7 @@ export default function Navbar() {
                 </div>
               ))}
               <Link
-                href="/register"
+                href="/auth/register"
                 className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-600 hover:bg-gray-700"
               >
                 Sign Up

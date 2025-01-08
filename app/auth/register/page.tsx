@@ -1,11 +1,11 @@
 'use client';
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import '../globals.css';
-import '../page.css';
+// import '../globals.css';
+// import '../page.css';
 import '../login/login.css';
-import { Label } from "../../components/ui/label";
-import { Input } from "../../components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { SuccessNotification, ErrorNotification } from "@/components/Notifications";
@@ -74,8 +74,7 @@ export default function Register() {
             setLoading(false);
             console.log("data while registering:==> ", data);
             if (response.ok) {
-                setEmail(formData.email); // Save email for OTP reference
-                setOpenOTPDialogue(true); // Open OTP dialog
+                router.push('/auth/register/verify')
             } else {
                 toast({ title: "Error", description: data.error, variant: "destructive", })
             }
@@ -162,38 +161,8 @@ export default function Register() {
                         <BottomGradient />
                     </button>
                 </form>
-                <span className="text-gray-700  px-4 w-full flex items-center gap-3 ">Already have account ? <Link className="bg-gray-200 px-3 hover:bg-gray-300 transition-all duration-300 ease-in-out rounded underline py-1 gap-1 flex items-center w-fit " href={'/login'}>Login  <ArrowTopRightOnSquareIcon className="w-4" /> </Link></span>
+                <span className="text-gray-700  px-4 w-full flex items-center gap-3 ">Already have account ? <Link className="bg-indigo-100 px-3 hover:bg-indigo-200 transition-all duration-300 ease-in-out rounded underline py-1 gap-1 flex items-center w-fit " href={'/auth/login'}>Login  <ArrowTopRightOnSquareIcon className="w-4" /> </Link></span>
             </div>
-            <Dialog open={true} onOpenChange={setOpenOTPDialogue}>
-                {/* <DialogTrigger asChild>
-                    <Button variant="outline">Share</Button>
-                </DialogTrigger> */}
-                <DialogContent className="sm:max-w-md">
-                    <form
-                        onSubmit={handleSubmit}
-                        className=' rounded p-8 flex flex-col w-fit mx-auto items-center justify-centers'>
-                        {/* <h1 className=''> Check your email <span className=" underline">{email}</span> for OTP </h1> */}
-                        <div className='flex flex-col w-full p-4'>
-                            <label className='text-sm font-medium tracking-wide mb-2' htmlFor="email">Enter verification code </label>
-                            <InputOTP maxLength={6}>
-                                <InputOTPGroup className='flex gap-2'>
-                                    <InputOTPSlot className='border border-gray-400' index={0} />
-                                    <InputOTPSlot className='border border-gray-400' index={1} />
-                                    <InputOTPSlot className='border border-gray-400' index={2} />
-                                    <InputOTPSlot className='border border-gray-400' index={3} />
-                                    <InputOTPSlot className='border border-gray-400' index={4} />
-                                    <InputOTPSlot className='border border-gray-400' index={5} />
-                                </InputOTPGroup>
-                            </InputOTP>
-                        </div>
-                        <div className="flex w-full flex-col gap-4">
-                            <button className="w-full bg-black text-white rounded  p-1 hover:bg-gray-800" >
-                                Verify and Register
-                            </button>
-                        </div>
-                    </form>
-                </DialogContent>
-            </Dialog>
         </>
     );
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import '../../login/login.css';
-import '../../page.css';
+// import '../../login/login.css';
+// import '../../page.css';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -64,13 +64,13 @@ export default function Verify() {
 
     console.log("Error from verify page : ", error)
     return (
-        <main className=''>
+        <main className='flex items-center justify-center mx-auto w-full h-full'>
             <form
                 onSubmit={handleSubmit}
-                className='bg-white rounded px-8 py-12 flex flex-col w-fit mx-auto items-center justify-centers'>
-                <h1 className='text-xl font-medium'> Check your email {email} for OTP </h1>
+                className='bg-white shadow-lg rounded px-12 py-12 flex flex-col w-fit mx-auto items-center justify-centers'>
+                <h1 className='text-xl text-indigo-800 font-medium'> Check your email {email} for OTP </h1>
                 <div className='flex flex-col w-full p-4'>
-                    <label className='text-sm font-medium tracking-wide' htmlFor="email">Enter verification code </label>
+                    <label className='text-sm mb-2 tracking-wide' htmlFor="email">Enter verification code </label>
                     <InputOTP maxLength={6}>
                         <InputOTPGroup className='flex gap-2'>
                             <InputOTPSlot className='border border-gray-400' index={0} />
@@ -78,7 +78,6 @@ export default function Verify() {
                             <InputOTPSlot className='border border-gray-400' index={2} />
                             <InputOTPSlot className='border border-gray-400' index={3} />
                             <InputOTPSlot className='border border-gray-400' index={4} />
-                            <InputOTPSlot className='border border-gray-400' index={5} />
                         </InputOTPGroup>
                     </InputOTP>
                 </div>

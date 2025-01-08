@@ -14,6 +14,7 @@ import { Sidebar, SidebarProvider, Header } from "@/components/ui/sideBar";
 
 
 import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/NavBar";
 
 
 
@@ -24,24 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const pathname = usePathname(); // Get the current path
-  const excludedPaths = ["/home", "/register", "/login", "/overview", '/register/verify'];
-  const hideSidebar = excludedPaths.includes(pathname);
-
   return (
     <html lang="en">
       <body className={`${inter.className} w-full h-full`}>
-      <SidebarProvider>
-        {!hideSidebar && <AppSidebar />}
         <main className="w-full h-full">
-          {!hideSidebar && <Header />}
           <div className="mx-auto">
             {children}
           </div>
         </main>
         <Toaster />
-      </SidebarProvider>
-    </body>
+      </body>
     </html >
   );
 }

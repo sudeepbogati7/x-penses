@@ -10,6 +10,7 @@ import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
 import Link from 'next/link'
 export default function LoginPage() {
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -18,34 +19,8 @@ export default function LoginPage() {
         // Handle login logic here
         console.log('Login attempted with:', email, password)
     }
-
     return (
-        <div className="min-h-screen flex  flex-col md:flex-row ">
-            {/* Illustration Side */}
-            <div className='w-full md:w-3/4 '
-                style={{ backgroundImage: 'url(/epense_ai.webp)' }}
-            >
-                
-                <div
-                    className="w-full h-full flex items-center card justify-center p-8"
-                >
-                    <div className=''>
-                        <div className="text-white ">
-                            <h1 className="text-4xl font-bold mb-3">Track Your <span className='text-red-600'>Expenses</span></h1>
-                            <p className="mb-8 text-gray-100">Gain control of your finances with our powerful expense tracking system.</p>
-                            <div className="grid grid-cols-2 gap-4">
-                                <FeatureIcon Icon={DollarSign} text="Budget Management" />
-                                <FeatureIcon Icon={PieChart} text="Expense Analytics" />
-                                <FeatureIcon Icon={CreditCard} text="Bill Tracking" />
-                                <FeatureIcon Icon={TrendingUp} text="Financial Goals" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Login Form Side */}
-            <div className="md:w-1/2 flex bg-gradient-to-br from-white via-indigo-200 to-white  items-center justify-center p-8">
+            <div className="flex items-center justify-center p-8">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-gray-600">Welcome Back!</h2>
@@ -95,12 +70,11 @@ export default function LoginPage() {
                                 </span>
                             </div>
                         </div>
-                        <div className='text-center hover:text-black text-gray-500 hover:bg-gray-200 w-fit px-3 mx-auto rounded-md  mt-5 group transition-all duration-300 ease-linear '> <Link className='flex items-center transition-all duration-300 ease-linear gap-1 justify-center  group-hover:gap-4' href={'/register'}> Register here <span> &rarr;</span> </Link> </div>
+                        <div className='text-center hover:text-black text-gray-500 hover:bg-gray-200 w-fit px-3 mx-auto rounded-md  mt-5 group transition-all duration-300 ease-linear '> <Link className='flex items-center transition-all duration-300 ease-linear gap-1 justify-center  group-hover:gap-4' href={'/auth/register'}> Register here <span> &rarr;</span> </Link> </div>
                         
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 
