@@ -70,7 +70,7 @@ export default function LoginPage() {
                                 </span>
                             </div>
                         </div>
-                        <div className='text-center hover:text-black text-gray-500 hover:bg-gray-200 w-fit px-3 mx-auto rounded-md  mt-5 group transition-all duration-300 ease-linear '> <Link className='flex items-center transition-all duration-300 ease-linear gap-1 justify-center  group-hover:gap-4' href={'/auth/register'}> Register here <span> &rarr;</span> </Link> </div>
+                        <div className='text-center hover:text-black text-gray-500 hover:bg-indigo-200 w-fit px-3 mx-auto rounded-md  mt-5 group transition-all duration-300 ease-linear '> <Link className='flex items-center transition-all duration-300 ease-linear gap-1 justify-center  group-hover:gap-4' href={'/auth/register'}> Register here <span> &rarr;</span> </Link> </div>
                         
                     </div>
                 </div>
