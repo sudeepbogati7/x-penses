@@ -1,6 +1,4 @@
 'use client';
-import '../../login.css';
-import '../../../page.css';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
