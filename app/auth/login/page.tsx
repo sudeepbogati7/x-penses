@@ -11,9 +11,10 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
-// var API_URL = "https://expense-tracking-system.onrender.com/api" 
 
+// var API_URL = "https://expense-tracking-system.onrender.com/api" 
 var API_URL = "http://localhost:3001/api"
+
 export default function Login() {
     const router = useRouter();
     const { toast } = useToast()

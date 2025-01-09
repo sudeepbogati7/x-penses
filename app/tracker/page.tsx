@@ -143,12 +143,7 @@ export default function Home() {
 
   return (
     <>
-      {error && <ErrorNotification error={error} />}
-      {responseData && <SuccessNotification successResponse={responseData} />}
-      <div className=" h-screen w-full md:w-2/3 xl:w-1/2 mx-auto">
-        {/* header */}
-
-        {/* Total Expense Viewer */}
+      <div className=" h-screen w-full mx-auto">
         <div className='flex flex-col border-b-4 border-gray-200 dark:border-gray-600  h-38 w-full mx-auto '>
           <div className='text-xs w-4/5  text-center mx-auto pb-4 italic tracking-widest'> <span className='text-xl text-orange-500'>&quot; </span>Track Your Money: Take Charge of Your Finances <span className='text-xl text-orange-500'> &quot; </span></div>
           <div className='flex justify-center align-center animate-popup'>
@@ -156,7 +151,8 @@ export default function Home() {
             {loading &&
               <div className="animate-pulse">
                 <div className="m-3 h-8 w-24 rounded-lg bg-slate-400 text-lg"></div>
-              </div>}
+              </div>
+            }
             <div className={`p-4 ${filteredExpenses && filteredExpenses.length > 0 ? 'animate-slide-in' : ''} ${filteredExpenses && filteredExpenses.length > 0 ? (filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0).toString().length > 6 ? 'text-3xl' : 'text-7xl') : 'text-7xl'} font-bold`}>
               {filteredExpenses && filteredExpenses.length > 0 ? (
                 filteredExpenses.reduce((total: any, expense: any) => total + expense.amount, 0)

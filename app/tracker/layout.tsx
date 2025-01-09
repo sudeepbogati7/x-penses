@@ -26,10 +26,8 @@ export default function RootLayout({
             <SidebarProvider>
                 <AppSidebar />
                 <Header />
-                <main className="w-full h-full">
-                    <div className="mx-auto">
-                        {children}
-                    </div>
+                <main className="w-full md:pl-64 border border-black h-full">
+                    {children}
                 </main>
                 <Toaster />
             </SidebarProvider>
