@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 export default function LoadingSkeleton() {
   return (
-    <div className="w-full max-w-md space-y-6 p-6">
+    <div className="w-full animate-pulse flex flex-col items-center justify-center mx-auto max-w-md space-y-6 p-6">
       {/* Title and subtitle skeletons */}
       <div className="space-y-2">
         <Skeleton className="h-8 w-4/5" />
