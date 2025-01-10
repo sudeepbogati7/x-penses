@@ -77,7 +77,7 @@ export default function Verify() {
                         onChange={(value) => value.split('').forEach((char, index) => handleChange(index, char))}
                         maxLength={5}>
                         <InputOTPGroup className='flex gap-2'>
-                            <InputOTPSlot className='border border-gray-400' index={0} />
+                            <InputOTPSlot  className='border border-gray-400' index={0} />
                             <InputOTPSlot className='border border-gray-400' index={1} />
                             <InputOTPSlot className='border border-gray-400' index={2} />
                             <InputOTPSlot className='border border-gray-400' index={3} />

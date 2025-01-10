@@ -21,11 +21,12 @@ export default function HomePage() {
             className="opacity-10"
           />
         </div> */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="absolute top-24 left-24 w-56 h-64">
+          className="absolute top-24 left-24 w-56 h-64"
+          >
           <Image
             src="/investing.svg"
             alt="Financial graph"
@@ -70,7 +71,7 @@ export default function HomePage() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Link 
-              href="/register" 
+              href="/auth/register" 
               className="bg-gray-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-800 transition duration-300"> 
               Get Started
             </Link>

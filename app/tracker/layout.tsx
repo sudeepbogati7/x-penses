@@ -26,7 +26,7 @@ export default function RootLayout({
             <SidebarProvider>
                 <AppSidebar />
                 <Header />
-                <main className="w-full md:pl-64 border border-black h-full">
+                <main className="w-full md:pl-64 h-full">
                     {children}
                 </main>
                 <Toaster />
