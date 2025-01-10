@@ -134,7 +134,7 @@ export default function ExpenseTrackerOverview() {
                         {expense.category}
                       </Badge>
                     </TableCell>
-                    <TableCell>${expense.amount.toFixed(2)}</TableCell>
+                    <TableCell>Rs.{expense.amount.toFixed(2)}</TableCell>
                     <TableCell>{expense.date}</TableCell>
                     <TableCell className="text-right">
                       <Button variant="ghost" size="icon" className="text-blue-600 hover:text-blue-800">
