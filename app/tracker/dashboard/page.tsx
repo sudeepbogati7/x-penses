@@ -59,7 +59,6 @@ var API_URL = "http://localhost:3001/api"
 export default function Dashboard() {
 
     const router = useRouter();
-    const { responseData, setResponseData } = useResponseData();
     const [error, setError] = useState(null);
     const [userData, setUserData] = useState(null);
     const [expenseData, setExpenseData] = useState<any[]>();
@@ -234,7 +233,7 @@ export default function Dashboard() {
                     <Pie data={data} />
                 </div>
                 <h2 className='text-center px-2 font-bold text-sm text-orange-600  w-fit mx-auto mt-8 my-3'>Daily Expense Analysis </h2>
-                <div className='w-full mx-auto p-2  w-5/6 bg-white  h-fit shadow rounded-lg'>
+                <div className='w-full mx-auto p-2  bg-white  h-fit shadow rounded-lg'>
                     <Bar data={expeseByDayData} options={expenseByDayOptions}/>
                 </div>
             </main>
