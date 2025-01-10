@@ -36,7 +36,7 @@ export function AppSidebar() {
 
   return (
     <div className='h-screen z-50 overflow-hidden fixed top-0 left-0'>
-      <Sidebar className="border-r bg-gradient-to-br from-gray-100 px-3 via-indigo-100 to-white h-screen flex flex-col bg-background">
+      <Sidebar className="border-r bg-gradient-to-br from-gray-100 px-3 via-sky-100 to-white h-screen flex flex-col bg-background">
         <SidebarHeader className="flex h-14 items-center justify-between border-b px-6">
           <Link href="/" className="flex items-center space-x-2" onClick={handleLinkClick}>
             <span className="text-xl font-bold">ExpenseTracker</span>
@@ -59,14 +59,14 @@ export function AppSidebar() {
             ))}
           </SidebarMenu>
         </SidebarContent>
-        <SidebarFooter className="border-t p-4">
-          <div className="flex items-center space-x-3">
+        <SidebarFooter className="border-t  hover:bg-sky-200 p-4">
+          <Link href={'/tracker/profile'} className="flex items-center  space-x-3">
             <UserIcon className="h-8 w-8 rounded-full bg-muted p-2" />
             <div>
               <p className="text-sm font-medium">Sudeep Bogati </p>
               <p className="text-xs text-muted-foreground">hello@sudipbogati.com.np</p>
             </div>
-          </div>
+          </Link>
         </SidebarFooter>
       </Sidebar>
     </div>

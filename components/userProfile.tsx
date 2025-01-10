@@ -31,7 +31,7 @@ export default function UserProfile({
   const budgetUsagePercentage = (currentMonthExpenses / monthlyBudget) * 100
 
   return (
-    <Card className="w-full max-w-2xl mx-auto bg-white ">
+    <Card className="w-full max-w-2xl ">
       <CardHeader className="flex flex-col items-center pb-6 pt-6 space-y-1">
         <Avatar className="w-24 h-24 border-2 border-gray-200 shadow">
           <AvatarImage src={avatarUrl} alt={name} />

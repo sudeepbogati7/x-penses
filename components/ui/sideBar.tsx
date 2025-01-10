@@ -107,9 +107,9 @@ export const SidebarMenuButton = React.forwardRef<
       ref={ref}
       className={cn(
         "flex items-center w-full px-2 py-2 text-blue-900 text-sm font-medium rounded-md",
-        "hover:bg-blue-200 dark:hover:bg-gray-800",
+        "hover:bg-sky-200 dark:hover:bg-gray-800",
         "focus:outline-none  transition-all duration-300  dark:focus:ring-offset-gray-900",
-        active && "bg-blue-200 border-l-4 border-blue-600 dark:bg-gray-800",
+        active && "bg-sky-200 border-l-4 border-blue-600 dark:bg-gray-800",
         className
       )}
       {...props}

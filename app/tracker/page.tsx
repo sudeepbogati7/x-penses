@@ -18,8 +18,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from '@/components/ui/table';
+import { Suspense } from 'react';
 import { Badge } from '@/components/ui/badge'
+import OvercviewSkeleton from '@/components/overviewSkeleton';
 
 // Mock data for demonstration
 const mockExpenses = [
@@ -32,7 +34,7 @@ const mockExpenses = [
 
 const categories = ['All', 'Food', 'Utilities', 'Entertainment', 'Transportation', 'Other']
 
-const categoryColors:any = {
+const categoryColors: any = {
   Food: 'bg-green-100 text-green-800',
   Utilities: 'bg-blue-100 text-blue-800',
   Entertainment: 'bg-purple-100 text-purple-800',
@@ -55,103 +57,105 @@ export default function ExpenseTrackerOverview() {
   const monthYear = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-        <h1 className="text-3xl font-bold mb-4 md:mb-0 text-gray-800">Expense Tracker</h1>
-        <Button className="w-full md:w-auto bg-green-500 hover:bg-green-600">
-          <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
-        </Button>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
-            <DollarSignIcon className="h-4 w-4 text-blue-100" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${totalExpense.toFixed(2)}</div>
-            <p className="text-xs text-blue-100">{monthYear}</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Average Expense</CardTitle>
-            <TrendingUpIcon className="h-4 w-4 text-green-100" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${averageExpense.toFixed(2)}</div>
-            <p className="text-xs text-green-100">Per transaction</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Highest Expense</CardTitle>
-            <TrendingDownIcon className="h-4 w-4 text-red-100" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${highestExpense.toFixed(2)}</div>
-            <p className="text-xs text-red-100">Single transaction</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="mt-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-800">Expenses List</h2>
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select category" />
-            </SelectTrigger>
-            <SelectContent>
-              {categories.map((category) => (
-                <SelectItem key={category} value={category}>
-                  {category}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+    <Suspense fallback={<OvercviewSkeleton />}>
+      <div className="container mx-auto p-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+          <h1 className="text-3xl font-bold mb-4 md:mb-0 text-gray-800">Expense Tracker</h1>
+          <Button className="w-full md:w-auto bg-green-500 hover:bg-green-600">
+            <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
+          </Button>
         </div>
 
-        <Card>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Expense Name</TableHead>
-                  <TableHead>Category</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Date Added</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredExpenses.map((expense:any) => (
-                  <TableRow key={expense.id}>
-                    <TableCell className="font-medium">{expense.name}</TableCell>
-                    <TableCell>
-                      <Badge className={categoryColors[expense.category] || categoryColors.Other}>
-                        {expense.category}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>Rs.{expense.amount.toFixed(2)}</TableCell>
-                    <TableCell>{expense.date}</TableCell>
-                    <TableCell className="text-right">
-                      <Button variant="ghost" size="icon" className="text-blue-600 hover:text-blue-800">
-                        <Edit2Icon className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="text-red-600 hover:text-red-800">
-                        <TrashIcon className="h-4 w-4" />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
+              <DollarSignIcon className="h-4 w-4 text-blue-100" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">${totalExpense.toFixed(2)}</div>
+              <p className="text-xs text-blue-100">{monthYear}</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Average Expense</CardTitle>
+              <TrendingUpIcon className="h-4 w-4 text-green-100" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">${averageExpense.toFixed(2)}</div>
+              <p className="text-xs text-green-100">Per transaction</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Highest Expense</CardTitle>
+              <TrendingDownIcon className="h-4 w-4 text-red-100" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">${highestExpense.toFixed(2)}</div>
+              <p className="text-xs text-red-100">Single transaction</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="mt-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold text-gray-800">Expenses List</h2>
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
                 ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Card>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Expense Name</TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead>Amount</TableHead>
+                    <TableHead>Date Added</TableHead>
+                    <TableHead className="text-right">Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredExpenses.map((expense: any) => (
+                    <TableRow key={expense.id}>
+                      <TableCell className="font-medium">{expense.name}</TableCell>
+                      <TableCell>
+                        <Badge className={categoryColors[expense.category] || categoryColors.Other}>
+                          {expense.category}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>Rs.{expense.amount.toFixed(2)}</TableCell>
+                      <TableCell>{expense.date}</TableCell>
+                      <TableCell className="text-right">
+                        <Button variant="ghost" size="icon" className="text-blue-600 hover:text-blue-800">
+                          <Edit2Icon className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="icon" className="text-red-600 hover:text-red-800">
+                          <TrashIcon className="h-4 w-4" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-    </div>
+    </Suspense>
   )
 }
 
