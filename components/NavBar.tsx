@@ -63,7 +63,7 @@ export default function Navbar({bgColor} : any) {
             </Link>
           </div>
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-baseline space-x-10">
               {navItems.map((item) => (
                 <div 
                   key={item.name} 
@@ -73,7 +73,7 @@ export default function Navbar({bgColor} : any) {
                 >
                   <Link 
                     href={item.href} 
-                    className={`px-3 py-2 rounded-md text-sm font-medium ${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-gray-600 hover:text-gray-900'}`}
+                    className={`px-3 py-2 rounded-md text-sm font-medium text-[#0082d9] hover:text-[#12a0ff]`}
                   >
                     <span className="flex items-center">
                       {item.name}
@@ -81,14 +81,14 @@ export default function Navbar({bgColor} : any) {
                         animate={{ rotate: openItem === item.name ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <ChevronDown className="ml-1 h-4 w-4" />
+                        <ChevronDown className="ml-1  h-4 w-4" />
                       </motion.span>
                     </span>
                   </Link>
                   <AnimatePresence>
                     {openItem === item.name && (
                       <motion.div 
-                        className="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-hidden"
+                        className="absolute left-0  w-56 rounded-md shadow-lg bg-blue-100 ring-1 ring-black ring-opacity-5 overflow-hidden"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
@@ -99,7 +99,7 @@ export default function Navbar({bgColor} : any) {
                             <Link
                               key={detail.name}
                               href="#"
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 hover:text-[#2a71a1]"
                             >
                               <detail.icon className="h-5 w-5 mr-3 text-gray-500" />
                               <span>
@@ -121,8 +121,8 @@ export default function Navbar({bgColor} : any) {
               href="/auth/register"
               className={`px-4 py-2 rounded-md text-sm font-medium ${
                 isScrolled
-                  ? 'bg-gray-800 text-white hover:bg-gray-700'
-                  : 'bg-gray-100 text-gray-700 hover:text-black hover:bg-white'
+                  ? 'bg-[#0082d9] text-white hover:bg-[#0082d9]'
+                  : 'bg-blue-200 text-[#0082d9] hover:text-white hover:bg-[#0082d9]'
               } transition-colors duration-300`}
             >
               Sign Up
@@ -158,8 +158,8 @@ export default function Navbar({bgColor} : any) {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
-              {navItems.map((item) => (
+            <div className="px-2 pt-8 pb-3 space-y-4 sm:px-3 bg-white shadow-lg">
+              {/* {navItems.map((item) => (
                 <div key={item.name}>
                   <Link href={item.href} className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">
                     {item.name}
@@ -177,10 +177,16 @@ export default function Navbar({bgColor} : any) {
                     ))}
                   </div>
                 </div>
-              ))}
+              ))} */}
               <Link
                 href="/auth/register"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-600 hover:bg-gray-700"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-100 text-[#0082d9] "
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/register"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-[#0082d9] text-white hover:bg-[#0082d9]"
               >
                 Sign Up
               </Link>

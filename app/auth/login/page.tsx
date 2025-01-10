@@ -58,10 +58,10 @@ export default function Login() {
             <div className="flex items-center justify-center p-8">
                 <div className="w-full max-w-md">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold text-gray-600">Welcome Back!</h2>
+                        <h2 className="text-3xl font-bold text-[#0a548c]">Welcome Back!</h2>
                         <p className="text-gray-600 mt-2">We are glad to see you again. Lets get your finances in order.</p>
                         <div className="mt-4 flex justify-center">
-                            <div className="w-16 h-1 bg-indigo-300 rounded-full"></div>
+                            <div className="w-16 h-1 bg-[#567f9c] rounded-full"></div>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className=" mt-8">
@@ -85,14 +85,14 @@ export default function Login() {
                                 placeholder='********'
                             />
                         </LabelInputContainer>
-                        <Link href={'/auth/login/forget-password/'} className='text-left mb-6 text-indigo-700 hover:underline hover:text-indigo-900 w-full flex items-end justify-end'>  <span>Forgot password ?</span> </Link >
+                        <Link href={'/auth/login/forget-password/'} className='text-left mb-6 text-blue-800 hover:underline hover:text-indigo-900 w-full flex items-end justify-end'>  <span>Forgot password ?</span> </Link >
 
                         <div>
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 type="submit"
-                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#2b526e] hover:bg-[#3d81b3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
                             >
                                 Log in
                             </motion.button>
@@ -107,7 +107,7 @@ export default function Login() {
                                 </span>
                             </div>
                         </div>
-                        <div className='text-center hover:text-black text-gray-500 hover:bg-indigo-200 w-fit px-3 mx-auto rounded-md  mt-2 group transition-all duration-300 ease-linear '> <Link className='flex items-center transition-all duration-300 ease-linear gap-1 justify-center  group-hover:gap-4' href={'/auth/register'}> Register here <span> &rarr;</span> </Link> </div>
+                        <div className='text-center hover:text-black text-gray-500 hover:bg-[#97c6e8] w-fit px-3 mx-auto rounded-md  mt-2 group transition-all duration-300 ease-linear '> <Link className='flex items-center transition-all duration-300 ease-linear gap-1 justify-center  group-hover:gap-4' href={'/auth/register'}> Register here <span> &rarr;</span> </Link> </div>
                     </div>
                 </div>
             </div>

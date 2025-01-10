@@ -100,7 +100,7 @@ export default function Register() {
     return (
         <>
             <div className="w-full  mx-auto p-5 md:px-16   dark:bg-black">
-                <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+                <h2 className="font-bold text-xl text-[#1c5b8a] dark:text-neutral-200">
                     Welcome to Expense Tracking System
                 </h2>
                 <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
@@ -154,14 +154,14 @@ export default function Register() {
                     </LabelInputContainer>
 
                     <button
-                        className="bg-gradient-to-br top-3 relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+                        className="bg-gradient-to-br top-3 relative group/btn from-[#1c5b8a] dark:from-zinc-900 dark:to-zinc-900 to-[#386a8f] block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
                         type="submit"
                     >
                         {loading ? "Please wait..." : `Register `}
                         <BottomGradient />
                     </button>
                 </form>
-                <span className="text-gray-700  px-4 w-full flex items-center gap-3 ">Already have account ? <Link className="bg-indigo-100 px-3 hover:bg-indigo-200 transition-all duration-300 ease-in-out rounded underline py-1 gap-1 flex items-center w-fit " href={'/auth/login'}>Login  <ArrowTopRightOnSquareIcon className="w-4" /> </Link></span>
+                <span className="text-gray-700  px-4 w-full flex items-center gap-3 ">Already have account ? <Link className="bg-[#dae8f2] px-3 hover:bg-[#adddff] transition-all duration-300 ease-in-out rounded underline py-1 gap-1 flex items-center w-fit " href={'/auth/login'}>Login  <ArrowTopRightOnSquareIcon className="w-4" /> </Link></span>
             </div>
         </>
     );

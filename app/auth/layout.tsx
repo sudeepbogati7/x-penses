@@ -32,7 +32,7 @@ export default function RootLayout({
                     <div className="w-full h-full flex items-center card justify-center p-8" >
                         <div className=''>
                             <div className="text-white ">
-                                <h1 className="text-4xl font-bold mb-3">Track Your <span className='text-red-600'>Expenses</span></h1>
+                                <h1 className="text-4xl font-bold mb-3">Track Your <span className='text-[#3d9ce3]'>Expenses</span></h1>
                                 <p className="mb-8 text-gray-100">Gain control of your finances with our powerful expense tracking system.</p>
                                 <div className="grid grid-cols-2 gap-4">
                                     <FeatureIcon Icon={DollarSign} text="Budget Management" />
@@ -46,7 +46,7 @@ export default function RootLayout({
                 </div>
 
                 {/* Login Form Side */}
-                <div className="md:w-1/2 w-full  bg-gradient-to-br from-white via-indigo-100 to-white py-8 px-4">
+                <div className="md:w-1/2 w-full  bg-gradient-to-br from-white via-[#e8f5ff] to-white py-8 px-4">
                     <Suspense fallback={<LoadingSkeleton />}>
                         {children}
                     </Suspense>
