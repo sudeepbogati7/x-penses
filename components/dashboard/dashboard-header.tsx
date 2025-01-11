@@ -16,10 +16,10 @@ export function DashboardHeader() {
       <CardContent className="p-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <h1 className="text-2xl font-bold text-white">Expense Dashboard</h1>
-          <div className="flex space-x-4">
+          <div className="flex flex-col md:flex-row gap-3  items-center md:space-x-4">
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="w-[240px] pl-3 text-left font-normal bg-white text-[#2d98d6]">
+                <Button variant="outline" className="md:w-full w-fit pl-3 text-left font-normal bg-white text-[#2d98d6]">
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {date ? date.toDateString() : "Pick a date"}
                 </Button>
@@ -34,7 +34,7 @@ export function DashboardHeader() {
               </PopoverContent>
             </Popover>
             <Select>
-              <SelectTrigger className="w-[180px] bg-white text-[#2d98d6]">
+              <SelectTrigger className="w-full bg-white text-[#2d98d6]">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>

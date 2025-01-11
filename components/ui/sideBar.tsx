@@ -1,7 +1,8 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Menu } from 'lucide-react'
-import { request } from "http"
+import { ChartNoAxesCombined } from "lucide-react" 
+
 const SidebarContext = React.createContext<{
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -143,13 +144,13 @@ export function Header() {
   const { setIsOpen } = useSidebar()
 
   return (
-    <header className="sticky top-0 z-40 md:pl-64 border-b bg-background">
-      <div className="md:hidden flex h-14 items-center px-4">
+    <header className="sticky top-0 z-40 md:pl-64 border-b bg-white">
+      <div className=" flex h-14 items-center px-4">
         <button className="md:hidden" onClick={() => setIsOpen(true)}>
           <Menu className="h-6 w-6" />
           <span className="sr-only">Open Sidebar</span>
         </button>
-        <h1 className="ml-4 text-lg font-semibold"> Overview </h1>
+        <h1 className="ml-4 md:ml-0 text-lg font-semibold flex items-center gap-1 text-sky-800"> <ChartNoAxesCombined /> Track Your Daily Expenses </h1>
       </div>
     </header>
   )

@@ -20,25 +20,6 @@ import { useToast } from "@/hooks/use-toast"
 
 import Cookies from "js-cookie";
 const token = Cookies.get('token');
-import Image from "next/image";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { ArrowLeft, Copy } from "lucide-react";
-
-
-
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button";
-
-
 // var API_URL = "https://expense-tracking-system.onrender.com/api" 
 var API_URL = "http://localhost:3001/api"
 
@@ -175,8 +156,6 @@ function FeatureIcon({ Icon, text }: { Icon: React.ElementType, text: string }) 
         </div>
     )
 }
-
-
 const BottomGradient = () => {
     return (
         <>

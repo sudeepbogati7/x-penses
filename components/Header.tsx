@@ -15,7 +15,6 @@ export default function ExpenseHeader() {
     const [showLogoutPopup, setShowLogoutPopup] = useState(false);
     return (
         <header className="h-16  flex align-center shadow-gray-500/10 shadow-md justify-between w-full p-4  dark:shadow-gray-500/30">
-
             <Link href={"/"}>
                 {" "}
                 <div className="animate-scale-in tracking-widest font-medium flex text-lg border-b-2 hover:border-orange-500 dark:hover:border-orange-500 transition-all duration-900  ease-linear dark:border-gray-500 border-gray-300 my-auto">

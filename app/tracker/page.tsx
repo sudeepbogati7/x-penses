@@ -59,15 +59,13 @@ export default function ExpenseTrackerOverview() {
   return (
     <Suspense fallback={<OvercviewSkeleton />}>
       <div className="container mx-auto p-4">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-          <h1 className="text-3xl font-bold mb-4 md:mb-0 text-gray-800">Expense Tracker</h1>
-          <Button className="w-full md:w-auto bg-green-500 hover:bg-green-600">
-            <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
-          </Button>
-        </div>
+        {/* <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+          <h1 className="text-xl font-bold mb-4 md:mb-0 text-gray-800"> </h1>
+          
+        </div> */}
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+          <Card className="bg-gradient-to-br from-sky-700 to-sky-800 text-white">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
               <DollarSignIcon className="h-4 w-4 text-blue-100" />
@@ -77,7 +75,7 @@ export default function ExpenseTrackerOverview() {
               <p className="text-xs text-blue-100">{monthYear}</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
+          <Card className="bg-gradient-to-br from-green-600 to-green-700 text-white">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Average Expense</CardTitle>
               <TrendingUpIcon className="h-4 w-4 text-green-100" />
@@ -87,7 +85,7 @@ export default function ExpenseTrackerOverview() {
               <p className="text-xs text-green-100">Per transaction</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white">
+          <Card className="bg-gradient-to-br from-red-600 to-red-800 text-white">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Highest Expense</CardTitle>
               <TrendingDownIcon className="h-4 w-4 text-red-100" />
@@ -100,6 +98,9 @@ export default function ExpenseTrackerOverview() {
         </div>
 
         <div className="mt-6">
+          <Button className="mb-4 w-full md:w-auto bg-sky-500 hover:bg-sky-700">
+            <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
+          </Button>
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold text-gray-800">Expenses List</h2>
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>

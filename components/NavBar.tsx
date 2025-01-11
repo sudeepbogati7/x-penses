@@ -55,10 +55,10 @@ export default function Navbar({bgColor} : any) {
   return (
     <nav className={`fixed w-full py-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : `${bgColor}`}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0 w-full">
-             <Image src="/logo1.gif" width={100} height={100} alt='logo'></Image>
+        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center ">
+            <Link href="/" className="flex-shrink-0  w-full">
+             <Image  src="/logo/kharcha-logo.svg" width={120} height={120} alt='logo'></Image>
               {/* <span className={`text-xl font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-600'}`}>ExpenseTracker</span> */}
             </Link>
           </div>
@@ -73,8 +73,7 @@ export default function Navbar({bgColor} : any) {
                 >
                   <Link 
                     href={item.href} 
-                    className={`px-3 py-2 rounded-md text-sm font-medium text-[#0082d9] hover:text-[#12a0ff]`}
-                  >
+                    className={`px-3 py-2 rounded-md text-sm font-medium text-[#0082d9] hover:text-[#12a0ff]`}>
                     <span className="flex items-center">
                       {item.name}
                       <motion.span
@@ -88,7 +87,7 @@ export default function Navbar({bgColor} : any) {
                   <AnimatePresence>
                     {openItem === item.name && (
                       <motion.div 
-                        className="absolute left-0  w-56 rounded-md shadow-lg bg-blue-100 ring-1 ring-black ring-opacity-5 overflow-hidden"
+                        className="absolute left-0  w-56 rounded-md shadow-lg bg-sky-100 ring-1 ring-black ring-opacity-5 overflow-hidden"
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
@@ -99,7 +98,7 @@ export default function Navbar({bgColor} : any) {
                             <Link
                               key={detail.name}
                               href="#"
-                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-blue-200 hover:text-[#2a71a1]"
+                              className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-sky-200 hover:text-[#2a71a1]"
                             >
                               <detail.icon className="h-5 w-5 mr-3 text-gray-500" />
                               <span>

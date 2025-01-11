@@ -7,7 +7,6 @@ import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 // components
-import { useResponseData } from '@/components/ResponseData';
 
 import Header from '@/components/Header';
 import { useRouter } from 'next/navigation';

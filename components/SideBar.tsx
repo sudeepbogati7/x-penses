@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, BarChart2, FileText, Settings, X, ViewIcon } from 'lucide-react'
 import { cn } from "@/lib/utils"
-import { UserIcon } from '@heroicons/react/24/outline'
+import { UserIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image'
 import {
   Sidebar,
   SidebarContent,
@@ -37,9 +38,9 @@ export function AppSidebar() {
   return (
     <div className='h-screen z-50 overflow-hidden fixed top-0 left-0'>
       <Sidebar className="border-r bg-gradient-to-br from-gray-100 px-3 via-sky-100 to-white h-screen flex flex-col bg-background">
-        <SidebarHeader className="flex h-14 items-center justify-between border-b px-6">
-          <Link href="/" className="flex items-center space-x-2" onClick={handleLinkClick}>
-            <span className="text-xl font-bold">ExpenseTracker</span>
+        <SidebarHeader className="flex h-24 items-center justify-between border-b px-6">
+          <Link href="/" className="flex items-center space-x-2 " onClick={handleLinkClick}>
+            <Image src={'/logo/kharcha-logo.svg'} width={120} height={100} alt='logo' ></Image>
           </Link>
           <SidebarTrigger className="md:hidden" onClick={() => setIsOpen(false)}>
             <X className="h-6 w-6" />
