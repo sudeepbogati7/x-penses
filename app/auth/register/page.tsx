@@ -55,6 +55,7 @@ export default function Register() {
             setLoading(false);
             console.log("data while registering:==> ", data);
             if (response.ok) {
+                toast({ title: "Success", description: "Registration successful , please verify your email.", variant: "default" });
                 router.push(`/auth/register/verify?email=${encodeURIComponent(formData.email)}`);
             } else {
                 toast({ title: "Error", description: data.error, variant: "destructive" });

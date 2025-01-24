@@ -22,6 +22,7 @@ import {
 import { Suspense } from 'react';
 import { Badge } from '@/components/ui/badge'
 import OvercviewSkeleton from '@/components/overviewSkeleton';
+import { AddExpenseForm } from '@/components/AddExpenseForm';
 
 // Mock data for demonstration
 const mockExpenses = [
@@ -44,6 +45,8 @@ const categoryColors: any = {
 
 export default function ExpenseTrackerOverview() {
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [openAddExpenseForm, setOpenAddExpenseForm] = useState(false)
+  const toggleAddExpenseForm = () => setOpenAddExpenseForm(!openAddExpenseForm);
 
   const filteredExpenses = selectedCategory === 'All'
     ? mockExpenses
@@ -97,8 +100,9 @@ export default function ExpenseTrackerOverview() {
           </Card>
         </div>
 
+          <AddExpenseForm open={openAddExpenseForm} setOpen={setOpenAddExpenseForm} />
         <div className="mt-6">
-          <Button className="mb-4 w-full md:w-auto bg-sky-500 hover:bg-sky-700">
+          <Button onClick={toggleAddExpenseForm} className="mb-4 w-full md:w-auto bg-sky-500 hover:bg-sky-700">
             <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
           </Button>
           <div className="flex justify-between items-center mb-4">

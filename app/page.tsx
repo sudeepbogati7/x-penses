@@ -141,7 +141,7 @@ export default function HomePage() {
           <h2 className="md:text-4xl text-2xl font-bold mb-6 text-gray-900">Ready to Take Control of Your Finances?</h2>
           <p className="md:text-xl text-lg mb-8 text-gray-700">Join thousands of users who have transformed their financial lives with our expense tracking system.</p>
           <Link 
-            href="/register" 
+            href="/auth/register" 
             className="bg-[#2d5573] text-white px-8 py-3 rounded-full font-semibold  hover:bg-[#3773a1] transition duration-300"
           >
             Start for Free &rarr;

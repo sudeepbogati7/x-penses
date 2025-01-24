@@ -44,7 +44,7 @@ export default function Login() {
 
             if (response.ok) {
                 router.push('/tracker');
-                Cookies.set('token', data.token);
+                Cookies.set('kharcha_token', data.token);
             } else {
                 toast({ title: "Error !", description: data.error, variant: "destructive" });
             }
