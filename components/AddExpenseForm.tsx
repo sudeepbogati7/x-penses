@@ -37,18 +37,21 @@ export const expenseCategories: ExpenseCategory[] = [
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 import { useToast } from "@/hooks/use-toast"
 
+import { useExpenseContext } from "./ExpenseContext"
+
+
 export function AddExpenseForm({ open, setOpen }: { open: boolean; setOpen: (open: boolean) => void }) {
   const [title, setTitle] = useState("")
   const [amount, setAmount] = useState("")
   const [category, setCategory] = useState<ExpenseCategory>(expenseCategories[0])
   const [loading, setLoading] = useState(false);
 
-
+  const {expenseData, getExpenses} = useExpenseContext()
   // retrieve jwt token from cookie 
   const kharcha_token = Cookies.get('kharcha_token');
   
   const { toast } = useToast()
-  
+
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
@@ -72,6 +75,7 @@ export function AddExpenseForm({ open, setOpen }: { open: boolean; setOpen: (ope
         setLoading(false);
         if (response.ok){
             toast({ title: "Success", description: "Expense added successfully", variant: "default" })
+            getExpenses();
         }else{
             toast({ title: "Error", description: data.error, variant: "destructive" })
         }

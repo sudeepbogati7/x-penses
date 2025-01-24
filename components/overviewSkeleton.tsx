@@ -1,81 +1,41 @@
-import { Skeleton } from "@/components/ui/skeleton"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Plus } from 'lucide-react'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { DollarSign, TrendingUp, TrendingDown, Plus } from "lucide-react"
 
-export default function OvercviewSkeleton() {
+export function ExpenseTrackerSkeleton() {
   return (
-    <div className="container mx-auto p-4 space-y-8">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Expense Tracker</h1>
-        <Button className="bg-green-500 hover:bg-green-600">
+    <div className="container mx-auto p-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-6">
+        {[
+          { title: "Total Expenses", icon: DollarSign, color: "from-sky-700 to-sky-800" },
+          { title: "Average Expense", icon: TrendingUp, color: "from-green-600 to-green-700" },
+          { title: "Highest Expense", icon: TrendingDown, color: "from-red-600 to-red-800" },
+        ].map((card, index) => (
+          <Card key={index} className={`bg-gradient-to-br ${card.color} text-white`}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+              <card.icon className="h-4 w-4 text-white/70" />
+            </CardHeader>
+            <CardContent>
+              <div className="h-8 bg-white/20 rounded animate-pulse mb-1"></div>
+              <div className="h-4 w-24 bg-white/20 rounded animate-pulse"></div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <div className="mt-6">
+        <Button className="mb-4 w-full md:w-auto bg-sky-500 hover:bg-sky-700">
           <Plus className="mr-2 h-4 w-4" /> Add Expense
         </Button>
-      </div>
-
-      {/* Metric Cards */}
-      <div className="grid gap-4 md:grid-cols-3">
-        {/* Total Expenses Card */}
-        <Card className="bg-[#4285f4] text-white">
-          <CardContent className="p-6">
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-blue-100">Total Expenses</p>
-              <div className="flex items-baseline space-x-2">
-                <span className="text-2xl font-bold">$</span>
-                <Skeleton className="h-9 w-24 bg-blue-400/50" />
-              </div>
-              <Skeleton className="h-4 w-20 bg-blue-400/50" />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Average Expense Card */}
-        <Card className="bg-[#34a853] text-white">
-          <CardContent className="p-6">
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-green-100">Average Expense</p>
-              <div className="flex items-baseline space-x-2">
-                <span className="text-2xl font-bold">$</span>
-                <Skeleton className="h-9 w-24 bg-green-400/50" />
-              </div>
-              <Skeleton className="h-4 w-28 bg-green-400/50" />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Highest Expense Card */}
-        <Card className="bg-[#ea4335] text-white">
-          <CardContent className="p-6">
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-red-100">Highest Expense</p>
-              <div className="flex items-baseline space-x-2">
-                <span className="text-2xl font-bold">$</span>
-                <Skeleton className="h-9 w-24 bg-red-400/50" />
-              </div>
-              <Skeleton className="h-4 w-32 bg-red-400/50" />
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Expenses List */}
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold">Expenses List</h2>
-          <Skeleton className="h-10 w-[100px]" />
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold text-gray-800">Expenses List</h2>
+          <div className="w-[180px] h-10 bg-gray-200 rounded animate-pulse"></div>
         </div>
 
         <Card>
-          <CardContent className="p-0">
+          <CardContent>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -87,24 +47,24 @@ export default function OvercviewSkeleton() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {[...Array(5)].map((_, index) => (
-                  <TableRow key={index}>
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <TableRow key={`skeleton-${index}`}>
                     <TableCell>
-                      <Skeleton className="h-4 w-[150px]" />
+                      <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
                     </TableCell>
                     <TableCell>
-                      <Skeleton className="h-6 w-[100px] rounded-full" />
+                      <div className="h-6 bg-gray-200 rounded w-1/2 animate-pulse"></div>
                     </TableCell>
                     <TableCell>
-                      <Skeleton className="h-4 w-[80px]" />
+                      <div className="h-4 bg-gray-200 rounded w-1/4 animate-pulse"></div>
                     </TableCell>
                     <TableCell>
-                      <Skeleton className="h-4 w-[100px]" />
+                      <div className="h-4 bg-gray-200 rounded w-1/3 animate-pulse"></div>
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end space-x-2">
-                        <Skeleton className="h-8 w-8 rounded-md" />
-                        <Skeleton className="h-8 w-8 rounded-md" />
+                        <div className="h-8 w-8 bg-gray-200 rounded animate-pulse"></div>
+                        <div className="h-8 w-8 bg-gray-200 rounded animate-pulse"></div>
                       </div>
                     </TableCell>
                   </TableRow>

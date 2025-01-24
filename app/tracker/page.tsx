@@ -23,7 +23,6 @@ import {
 } from '@/components/ui/table';
 import { Suspense } from 'react';
 import { Badge } from '@/components/ui/badge'
-import OvercviewSkeleton from '@/components/overviewSkeleton';
 import { AddExpenseForm } from '@/components/AddExpenseForm';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
@@ -49,11 +48,13 @@ const categoryColors: any = {
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import { useExpenseContext } from "@/components/ExpenseContext";
+import { ExpenseTrackerSkeleton } from '@/components/overviewSkeleton';
 
 
 
 export default function ExpenseTrackerOverview() {
-  const { expenseData, getExpenses } = useExpenseContext();
+
+  const { expenseData, getExpenses, loading } = useExpenseContext();
 
   // states 
   const [selectedCategory, setSelectedCategory] = useState('All')
@@ -76,87 +77,113 @@ export default function ExpenseTrackerOverview() {
 
   const { toast } = useToast();
 
+
+  if (loading) {
+    return <ExpenseTrackerSkeleton />;
+  }
   return (
-    <Suspense fallback={<OvercviewSkeleton />}>
-      <div className="container mx-auto p-4">
-        {/* <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+    <div className="container mx-auto p-4">
+      {/* <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
           <h1 className="text-xl font-bold mb-4 md:mb-0 text-gray-800"> </h1>
           
         </div> */}
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="bg-gradient-to-br from-sky-700 to-sky-800 text-white">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
-              <DollarSignIcon className="h-4 w-4 text-blue-100" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">${totalExpense.toFixed(2)}</div>
-              <p className="text-xs text-blue-100">{monthYear}</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-to-br from-green-600 to-green-700 text-white">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Average Expense</CardTitle>
-              <TrendingUpIcon className="h-4 w-4 text-green-100" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">${averageExpense.toFixed(2)}</div>
-              <p className="text-xs text-green-100">Per transaction</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-gradient-to-br from-red-600 to-red-800 text-white">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Highest Expense</CardTitle>
-              <TrendingDownIcon className="h-4 w-4 text-red-100" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">${highestExpense.toFixed(2)}</div>
-              <p className="text-xs text-red-100">Single transaction</p>
-            </CardContent>
-          </Card>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Card className="bg-gradient-to-br from-sky-700 to-sky-800 text-white">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
+            <DollarSignIcon className="h-4 w-4 text-blue-100" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">${totalExpense.toFixed(2)}</div>
+            <p className="text-xs text-blue-100">{monthYear}</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-gradient-to-br from-green-600 to-green-700 text-white">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Average Expense</CardTitle>
+            <TrendingUpIcon className="h-4 w-4 text-green-100" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">${averageExpense.toFixed(2)}</div>
+            <p className="text-xs text-green-100">Per transaction</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-gradient-to-br from-red-600 to-red-800 text-white">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Highest Expense</CardTitle>
+            <TrendingDownIcon className="h-4 w-4 text-red-100" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">${highestExpense.toFixed(2)}</div>
+            <p className="text-xs text-red-100">Single transaction</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <AddExpenseForm open={openAddExpenseForm} setOpen={setOpenAddExpenseForm} />
+      <div className="mt-6">
+        <Button onClick={toggleAddExpenseForm} className="mb-4 w-full md:w-auto bg-sky-500 hover:bg-sky-700">
+          <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
+        </Button>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold text-gray-800">Expenses List</h2>
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
-        <AddExpenseForm open={openAddExpenseForm} setOpen={setOpenAddExpenseForm} />
-        <div className="mt-6">
-          <Button onClick={toggleAddExpenseForm} className="mb-4 w-full md:w-auto bg-sky-500 hover:bg-sky-700">
-            <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
-          </Button>
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold text-gray-800">Expenses List</h2>
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select category" />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <Card>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Expense Name</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Amount</TableHead>
-                    <TableHead>Date Added</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredExpenses.map((expense: any) => {
+        <Card>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Expense Name</TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Amount</TableHead>
+                  <TableHead>Date Added</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {loading ? (
+                  // Render skeleton rows while loading
+                  Array.from({ length: 5 }).map((_, index) => (
+                    <TableRow key={`skeleton-${index}`}>
+                      <TableCell>
+                        <div className="h-4 bg-gray-300 rounded w-3/4 animate-pulse"></div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="h-4 bg-gray-300 rounded w-1/2 animate-pulse"></div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="h-4 bg-gray-300 rounded w-1/4 animate-pulse"></div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="h-4 bg-gray-300 rounded w-1/3 animate-pulse"></div>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="h-4 bg-gray-300 rounded w-1/6 animate-pulse"></div>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : filteredExpenses.length > 0 ? (
+                  // Render actual expense data rows
+                  filteredExpenses.map((expense: any) => {
                     // Format the createdAt date
-                    const formattedDate = new Intl.DateTimeFormat('en-US', {
-                      month: 'short',
-                      day: '2-digit',
-                      year: 'numeric',
+                    const formattedDate = new Intl.DateTimeFormat("en-US", {
+                      month: "short",
+                      day: "2-digit",
+                      year: "numeric",
                     }).format(new Date(expense.createdAt));
 
                     return (
@@ -179,15 +206,25 @@ export default function ExpenseTrackerOverview() {
                         </TableCell>
                       </TableRow>
                     );
-                  })}
-                </TableBody>
+                  })
+                ) : (
+                  // Render "No expenses" message if no data exists
+                  <TableRow>
+                    <TableCell colSpan={5} className="text-center text-gray-500">
+                      No expenses yet. Get started by adding an expense.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
 
-              </Table>
-            </CardContent>
-          </Card>
-        </div>
+
+
+
+            </Table>
+          </CardContent>
+        </Card>
       </div>
-    </Suspense>
+    </div>
   )
 }
 
