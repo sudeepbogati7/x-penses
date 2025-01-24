@@ -33,12 +33,6 @@ export default function Register() {
     const { toast } = useToast()
 
     const [email, setEmail] = useState("");
-    const [otpDialogOpen, setOtpDialogOpen] = useState(false);
-
-
-    const [openOTPDialogue, setOpenOTPDialogue] = useState(false);
-
-
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

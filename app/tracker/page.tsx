@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CalendarIcon, Edit2Icon, PlusIcon, TrashIcon, DollarSignIcon, TrendingUpIcon, TrendingDownIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,7 +10,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from '@/components/ui/select';
+
+import Cookies from 'js-cookie';
 import {
   Table,
   TableBody,
@@ -23,7 +25,8 @@ import { Suspense } from 'react';
 import { Badge } from '@/components/ui/badge'
 import OvercviewSkeleton from '@/components/overviewSkeleton';
 import { AddExpenseForm } from '@/components/AddExpenseForm';
-
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 // Mock data for demonstration
 const mockExpenses = [
   { id: 1, name: 'Groceries', category: 'Food', amount: 150, date: '2023-06-15' },
@@ -43,14 +46,26 @@ const categoryColors: any = {
   Other: 'bg-gray-100 text-gray-800',
 }
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+import { useExpenseContext } from "@/components/ExpenseContext";
+
+
+
 export default function ExpenseTrackerOverview() {
+  const { expenseData, getExpenses } = useExpenseContext();
+
+  // states 
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [openAddExpenseForm, setOpenAddExpenseForm] = useState(false)
   const toggleAddExpenseForm = () => setOpenAddExpenseForm(!openAddExpenseForm);
 
+
+
   const filteredExpenses = selectedCategory === 'All'
-    ? mockExpenses
-    : mockExpenses.filter(expense => expense.category === selectedCategory)
+    ? expenseData
+    : expenseData.filter(expense => expense.category === selectedCategory)
+
 
   const totalExpense = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0)
   const averageExpense = totalExpense / filteredExpenses.length || 0
@@ -58,6 +73,8 @@ export default function ExpenseTrackerOverview() {
 
   const currentDate = new Date()
   const monthYear = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })
+
+  const { toast } = useToast();
 
   return (
     <Suspense fallback={<OvercviewSkeleton />}>
@@ -100,7 +117,7 @@ export default function ExpenseTrackerOverview() {
           </Card>
         </div>
 
-          <AddExpenseForm open={openAddExpenseForm} setOpen={setOpenAddExpenseForm} />
+        <AddExpenseForm open={openAddExpenseForm} setOpen={setOpenAddExpenseForm} />
         <div className="mt-6">
           <Button onClick={toggleAddExpenseForm} className="mb-4 w-full md:w-auto bg-sky-500 hover:bg-sky-700">
             <PlusIcon className="mr-2 h-4 w-4" /> Add Expense
@@ -134,27 +151,37 @@ export default function ExpenseTrackerOverview() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filteredExpenses.map((expense: any) => (
-                    <TableRow key={expense.id}>
-                      <TableCell className="font-medium">{expense.name}</TableCell>
-                      <TableCell>
-                        <Badge className={categoryColors[expense.category] || categoryColors.Other}>
-                          {expense.category}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>Rs.{expense.amount.toFixed(2)}</TableCell>
-                      <TableCell>{expense.date}</TableCell>
-                      <TableCell className="text-right">
-                        <Button variant="ghost" size="icon" className="text-blue-600 hover:text-blue-800">
-                          <Edit2Icon className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="icon" className="text-red-600 hover:text-red-800">
-                          <TrashIcon className="h-4 w-4" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {filteredExpenses.map((expense: any) => {
+                    // Format the createdAt date
+                    const formattedDate = new Intl.DateTimeFormat('en-US', {
+                      month: 'short',
+                      day: '2-digit',
+                      year: 'numeric',
+                    }).format(new Date(expense.createdAt));
+
+                    return (
+                      <TableRow key={expense.expenseId}>
+                        <TableCell className="font-medium">{expense.expenseTitle}</TableCell>
+                        <TableCell>
+                          <Badge className={categoryColors[expense.category] || categoryColors.Other}>
+                            {expense.category}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>Rs.{expense.amount.toFixed(2)}</TableCell>
+                        <TableCell>{formattedDate}</TableCell>
+                        <TableCell className="text-right">
+                          <Button variant="ghost" size="icon" className="text-blue-600 hover:text-blue-800">
+                            <Edit2Icon className="h-4 w-4" />
+                          </Button>
+                          <Button variant="ghost" size="icon" className="text-red-600 hover:text-red-800">
+                            <TrashIcon className="h-4 w-4" />
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
+
               </Table>
             </CardContent>
           </Card>

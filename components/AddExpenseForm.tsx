@@ -48,7 +48,7 @@ export function AddExpenseForm({ open, setOpen }: { open: boolean; setOpen: (ope
   const kharcha_token = Cookies.get('kharcha_token');
   
   const { toast } = useToast()
-
+  
 
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
