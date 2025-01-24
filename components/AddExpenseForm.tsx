@@ -11,27 +11,27 @@ export type ExpenseCategory = {
     name: string
     emoji: string
   }
-  
-  export const expenseCategories: ExpenseCategory[] = [
-    { name: "Food", emoji: "🍔" },
-    { name: "Transportation", emoji: "🚗" },
-    { name: "Housing", emoji: "🏠" },
-    { name: "Utilities", emoji: "💡" },
-    { name: "Entertainment", emoji: "🎭" },
-    { name: "Healthcare", emoji: "🏥" },
-    { name: "Education", emoji: "📚" },
-    { name: "Personal", emoji: "👤" },
-    { name: "Debt", emoji: "💳" },
-    { name: "Savings", emoji: "💰" },
-    { name: "Gifts", emoji: "🎁" },
-    { name: "Travel", emoji: "✈️" },
-    { name: "Clothing", emoji: "👕" },
-    { name: "Technology", emoji: "💻" },
-    { name: "Home Improvement", emoji: "🔨" },
-    { name: "Subscriptions", emoji: "📅" },
-    { name: "Miscellaneous", emoji: "🔮" },
-  ]
-  
+import Cookies from 'js-cookie';
+export const expenseCategories: ExpenseCategory[] = [
+  { name: "Food", emoji: "🍔" },
+  { name: "Transportation", emoji: "🚗" },
+  { name: "Housing", emoji: "🏠" },
+  { name: "Utilities", emoji: "💡" },
+  { name: "Entertainment", emoji: "🎭" },
+  { name: "Healthcare", emoji: "🏥" },
+  { name: "Education", emoji: "📚" },
+  { name: "Personal", emoji: "👤" },
+  { name: "Debt", emoji: "💳" },
+  { name: "Savings", emoji: "💰" },
+  { name: "Gifts", emoji: "🎁" },
+  { name: "Travel", emoji: "✈️" },
+  { name: "Clothing", emoji: "👕" },
+  { name: "Technology", emoji: "💻" },
+  { name: "Home Improvement", emoji: "🔨" },
+  { name: "Subscriptions", emoji: "📅" },
+  { name: "Miscellaneous", emoji: "🔮" },
+]
+
 
 // Load API URL from environment variable
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -44,8 +44,12 @@ export function AddExpenseForm({ open, setOpen }: { open: boolean; setOpen: (ope
   const [loading, setLoading] = useState(false);
 
 
+  // retrieve jwt token from cookie 
+  const kharcha_token = Cookies.get('kharcha_token');
+  
   const { toast } = useToast()
-  console.log("API URL ++> ", API_URL)
+
+
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
     // Send data to API
@@ -54,10 +58,11 @@ export function AddExpenseForm({ open, setOpen }: { open: boolean; setOpen: (ope
         const response = await fetch (`${API_URL}expenses/add`,{
             method : 'POST',
             headers: {
-                'Content-Type': 'application/json'  ,
+              "Authorization": `Bearer ${kharcha_token}`,
+              'Content-Type': 'application/json'  ,
             },
             body: JSON.stringify({
-                title,
+                expenseTitle: title,
                 amount,
                 category: category.name 
             })
