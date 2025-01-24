@@ -17,7 +17,7 @@ export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => 
 
   const getExpenses = async () => {
     setLoading(true);
-    const minimumLoadingTime = 2000;
+    const minimumLoadingTime = 1000;
     const startTime = Date.now();
 
     try {
