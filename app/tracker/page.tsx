@@ -12,7 +12,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import Cookies from 'js-cookie';
 import {
   Table,
   TableBody,
@@ -26,16 +25,7 @@ import { Badge } from '@/components/ui/badge'
 import { AddExpenseForm } from '@/components/AddExpenseForm';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
-// Mock data for demonstration
-const mockExpenses = [
-  { id: 1, name: 'Groceries', category: 'Food', amount: 150, date: '2023-06-15' },
-  { id: 2, name: 'Electricity Bill', category: 'Utilities', amount: 80, date: '2023-06-10' },
-  { id: 3, name: 'Movie Tickets', category: 'Entertainment', amount: 30, date: '2023-06-20' },
-  { id: 4, name: 'Gas', category: 'Transportation', amount: 45, date: '2023-06-18' },
-  { id: 5, name: 'Internet Bill', category: 'Utilities', amount: 60, date: '2023-06-05' },
-]
 
-const categories = ['All', 'Food', 'Utilities', 'Entertainment', 'Transportation', 'Other']
 
 const categoryColors: any = {
   Food: 'bg-green-100 text-green-800',
@@ -56,6 +46,14 @@ export default function ExpenseTrackerOverview() {
 
   const { expenseData, getExpenses, loading } = useExpenseContext();
 
+  console.log(expenseData)
+  // catetogies
+  const categories = [
+    "All",
+    ...new Set(expenseData.map((expense) => expense.category)),
+  ];
+
+
   // states 
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [openAddExpenseForm, setOpenAddExpenseForm] = useState(false)
@@ -70,7 +68,19 @@ export default function ExpenseTrackerOverview() {
 
   const totalExpense = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0)
   const averageExpense = totalExpense / filteredExpenses.length || 0
-  const highestExpense = Math.max(...filteredExpenses.map(expense => expense.amount))
+
+
+  const highestExpenseAmount = Math.max(
+    ...filteredExpenses.map((expense) => expense.amount)
+  );
+
+  // Find the expense with the highest amount
+  const highestExpense = filteredExpenses.find(
+    (expense) => expense.amount === highestExpenseAmount
+  );
+
+  // Extract the title of the highest expense
+  const highestExpenseTitle = highestExpense ? highestExpense.expenseTitle : null;
 
   const currentDate = new Date()
   const monthYear = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })
@@ -115,8 +125,8 @@ export default function ExpenseTrackerOverview() {
             <TrendingDownIcon className="h-4 w-4 text-red-100" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${highestExpense.toFixed(2)}</div>
-            <p className="text-xs text-red-100">Single transaction</p>
+            <div className="text-2xl font-bold">${highestExpenseAmount.toFixed(2)}</div>
+            <div className="text-xs text-red-100">Spent on <span className='underline'>{highestExpenseTitle}</span> </div>
           </CardContent>
         </Card>
       </div>
@@ -142,7 +152,7 @@ export default function ExpenseTrackerOverview() {
           </Select>
         </div>
 
-        <Card>
+        <Card className='w-full max-h-[500px] overflow-auto'>
           <CardContent>
             <Table>
               <TableHeader>

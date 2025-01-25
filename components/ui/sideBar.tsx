@@ -1,7 +1,8 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Menu } from 'lucide-react'
-import { ChartNoAxesCombined } from "lucide-react" 
+import { ChartNoAxesCombined,UserRound } from "lucide-react"
+import Link from "next/link"
 
 const SidebarContext = React.createContext<{
   isOpen: boolean
@@ -99,7 +100,7 @@ SidebarMenuItem.displayName = "SidebarMenuItem"
 
 export const SidebarMenuButton = React.forwardRef<
   HTMLButtonElement,
-  React.ButtonHTMLAttributes<HTMLButtonElement> & { 
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
     active?: boolean
   }
 >(({ className, active, children, ...props }, ref) => {
@@ -150,7 +151,10 @@ export function Header() {
           <Menu className="h-6 w-6" />
           <span className="sr-only">Open Sidebar</span>
         </button>
-        <h1 className="ml-4 md:ml-0 text-lg font-semibold flex items-center gap-1 text-sky-800"> <ChartNoAxesCombined /> Track Your Daily Expenses </h1>
+        <div className="flex items-center justify-between w-full pr-4" >
+          <h1 className="ml-4 md:ml-0 text-lg font-semibold flex items-center gap-1 text-sky-800"> <ChartNoAxesCombined /> Track Your Daily Expenses </h1>
+          <div className="bg-sky-100 py-1 px-4 md:block hidden rounded-md text-sky-800 hover:bg-sky-300 "><Link className="flex gap-1 " href={'/tracker/profile'}> <UserRound width={16} /> Profile </Link> </div>
+        </div>
       </div>
     </header>
   )

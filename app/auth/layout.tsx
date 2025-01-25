@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { usePathname } from "next/navigation";
 import { Mail, Lock, DollarSign, PieChart, CreditCard, TrendingUp } from 'lucide-react'
 import { Suspense } from "react";
+import { InitialLoadingWrapperAuth } from "@/components/InitialLoadingWrapperAuth";
 import { Sidebar, SidebarProvider, Header } from "@/components/ui/sideBar";
 import LoadingSkeleton from "@/components/RegisterLoadingSkeleton";
 import Navbar from "@/components/NavBar";
@@ -47,9 +48,9 @@ export default function RootLayout({
 
                 {/* Login Form Side */}
                 <div className="md:w-1/2 w-full  bg-gradient-to-br from-white via-[#e8f5ff] to-white py-8 px-4">
-                    <Suspense fallback={<LoadingSkeleton />}>
-                        {children}
-                    </Suspense>
+                <InitialLoadingWrapperAuth>
+                    {children}
+                </InitialLoadingWrapperAuth>
                 </div>
             </div>
         </>

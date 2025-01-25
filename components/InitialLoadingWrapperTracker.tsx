@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { ExpenseTrackerSkeleton } from "@/components/overviewSkeleton"
-
-export function InitialLoadingWrapper({ children }: { children: React.ReactNode }) {
+import { ExpensePageLoading } from "./CommonSkeletonTracker"
+export function InitialLoadingWrapperTracker({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export function InitialLoadingWrapper({ children }: { children: React.ReactNode 
   }, [])
 
   if (isLoading) {
-    return <ExpenseTrackerSkeleton />
+    return <ExpensePageLoading />
   }
 
   return <>{children}</>

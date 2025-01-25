@@ -9,7 +9,7 @@ import { ExpenseProvider } from "@/components/ExpenseContext";
 const inter = Inter({ subsets: ["latin"] });
 import { usePathname } from "next/navigation";
 
-import { InitialLoadingWrapper } from "@/components/InitialLoadingWrapper";
+import { InitialLoadingWrapperTracker } from "@/components/InitialLoadingWrapperTracker";
 
 const Metadata = {
     title: "Expense Tracker - Master Your Finances",
@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <SidebarProvider>
                     <AppSidebar />
                     <Header />
-                    <main className="w-full md:pl-64 h-full"><InitialLoadingWrapper>{children}</InitialLoadingWrapper></main>
+                    <main className="w-full md:pl-64 h-full"><InitialLoadingWrapperTracker>{children}</InitialLoadingWrapperTracker></main>
                     <Toaster />
                 </SidebarProvider>
             </ExpenseProvider>
