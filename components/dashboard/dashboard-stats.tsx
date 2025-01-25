@@ -1,10 +1,24 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { DollarSign, CreditCard, TrendingUp, TrendingDown } from 'lucide-react'
-import { useExpenseContext } from "../ExpenseContext"
-export function DashboardStats() {
+import { useExpenseContext } from "../ExpenseContext";
+type ExpenseDataTypes= {
+  id: string;
+  expenseTitle: string;
+  amount: number;
+  category: string;
+  created_at: string;
+}
 
-  const { expenseData, getExpenses, loading } = useExpenseContext();
+type DashboardStatsProps = {
+
+  expenseData: ExpenseDataTypes[];
+
+};
+
+
+export const DashboardStats: React.FC<DashboardStatsProps> = ({ expenseData }) => {
+
 
   const totalExpense = expenseData.reduce((sum, expense) => sum + expense.amount, 0)
   const averageExpense = totalExpense / expenseData.length || 0

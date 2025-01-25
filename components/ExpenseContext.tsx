@@ -54,7 +54,7 @@ export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => 
   }, []);
 
   return (
-    <ExpenseContext.Provider value={{ expenseData,setExpenseData, getExpenses, loading }}>
+    <ExpenseContext.Provider value={{ expenseData, setExpenseData, getExpenses, loading }}>
       {children}
     </ExpenseContext.Provider>
   );
