@@ -6,7 +6,7 @@ import { ChartSkeleton } from "@/components/skeletons/chart-skeleton"
 
 export function ExpensePageLoading() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6  py-4 px-4">
       {/* Header Card */}
       <Card className="bg-muted/5">
         <CardContent className="p-6">
