@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import { useState } from "react"
-import { CalendarIcon } from 'lucide-react'
+import { CalendarIcon, Filter } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -13,12 +13,72 @@ import { cn } from "@/lib/utils"
 import { addDays, format } from "date-fns"
 import { useExpenseContext } from "../ExpenseContext"
 import { DateRange } from "react-day-picker";
-
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/timeFilters"
 
 export function DashboardHeader() {
-  const { expenseData, getExpenses, loading } = useExpenseContext()
+  const { expenseData, setExpenseData, getExpenses, loading } = useExpenseContext()
 
   const [date, setDate] = React.useState<DateRange | undefined>(undefined)
+  const [activeFilter, setActiveFilter] = useState<string>("")
+
+  const handleFilterSelect = (filterType: string) => {
+    const today = new Date()
+    let fromDate = new Date()
+
+    switch (filterType) {
+      case "today":
+        setDate({ from: today, to: today })
+        setActiveFilter("Today")
+        break
+      case "7days":
+        fromDate.setDate(today.getDate() - 7)
+        setDate({ from: fromDate, to: today })
+        setActiveFilter("Last 7 days")
+        break
+      case "15days":
+        fromDate.setDate(today.getDate() - 15)
+        setDate({ from: fromDate, to: today })
+        setActiveFilter("Last 15 days")
+        break
+      case "month":
+        fromDate = new Date(today.getFullYear(), today.getMonth(), 1)
+        setDate({ from: fromDate, to: today })
+        setActiveFilter("This month")
+        break
+      default:
+        setActiveFilter("")
+        break
+    }
+  }
+
+  const handleCustomDateSelect = (selectedDate: DateRange | undefined) => {
+    setDate(selectedDate)
+    if (selectedDate?.from && selectedDate?.to) {
+      setActiveFilter("Custom")
+    } else {
+      setActiveFilter("")
+    }
+  }
+
+
+  React.useEffect(() => {
+    if (!date) {
+      getExpenses();
+      return;
+    }
+
+    const { from, to } = date;
+
+    console.log("from __, ", from , "to __", to)  
+    if (from && to) {
+      const filteredExpenses = expenseData.filter((expense) => {
+        const expenseDate = new Date(expense.created_at); // Assuming `expense.date` is a valid date string
+        return expenseDate >= from && expenseDate <= to;
+      });
+
+      setExpenseData(filteredExpenses);
+    }
+  }, [date, setExpenseData]);
 
 
   return (
@@ -34,44 +94,91 @@ export function DashboardHeader() {
             <div className="text-4xl font-extrabold "> Rs. 54,320 </div>
           </div>
           <div className="flex gap-3 items-center md:items-end">
-            <div className={cn("grid gap-2")}>
-              <Popover >
-                <PopoverTrigger asChild>
-                  <Button
-                    id="date"
-                    variant={"outline"}
-                    className={cn(
-                      "w-[300px] justify-start text-left font-normal",
-                      !date && "text-sky-700"
-                    )}
-                  >
-                    <CalendarIcon className="text-sky-700" />
-                    {date?.from ? (
-                      date.to ? (
-                        <span className="text-sky-700">
-                          {format(date.from, "LLL dd, y")} -{" "}
-                          {format(date.to, "LLL dd, y")}
-                        </span>
-                      ) : (
-                        format(date.from, "LLL dd, y")
-                      )
-                    ) : (
-                      <span>Pick a date</span>
-                    )}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    initialFocus
-                    mode="range"
-                    defaultMonth={date?.from}
-                    selected={date}
-                    onSelect={setDate}
-                    numberOfMonths={2}
-                  />
-                </PopoverContent>
-              </Popover>
-            </div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "bg-white text-[#2d98d6] hover:text-[#2d98d6] hover:bg-white/90",
+                    activeFilter && "px-3",
+                  )}
+                >
+                  <Filter className="h-4 w-4 mr-2" />
+                  {activeFilter && <span className="hidden sm:inline">{activeFilter}</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80" align="end">
+                <div className="space-y-2">
+                  <h4 className="font-medium leading-none mb-3">Date Filters</h4>
+                  <div className="grid gap-2">
+                    <Button
+                      variant="ghost"
+                      className="justify-start font-normal"
+                      onClick={() => handleFilterSelect("today")}
+                    >
+                      Today
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="justify-start font-normal"
+                      onClick={() => handleFilterSelect("7days")}
+                    >
+                      Last 7 days
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="justify-start font-normal"
+                      onClick={() => handleFilterSelect("15days")}
+                    >
+                      Last 15 days
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      className="justify-start font-normal"
+                      onClick={() => handleFilterSelect("month")}
+                    >
+                      This month
+                    </Button>
+                    <div className="pt-2 border-t">
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full justify-start text-left font-normal",
+                              !date && "text-muted-foreground",
+                            )}
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {date?.from ? (
+                              date.to ? (
+                                <>
+                                  {format(date.from, "LLL dd, y")} - {format(date.to, "LLL dd, y")}
+                                </>
+                              ) : (
+                                format(date.from, "LLL dd, y")
+                              )
+                            ) : (
+                              <span>Custom range</span>
+                            )}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            initialFocus
+                            mode="range"
+                            defaultMonth={date?.from}
+                            selected={date}
+                            onSelect={handleCustomDateSelect}
+                            numberOfMonths={2}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
             <div className="w-full md:w-[280px]">
               <Select>
                 <SelectTrigger id="category" className="w-full  bg-white text-sky-700">

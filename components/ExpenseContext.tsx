@@ -2,7 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 interface ExpenseContextType {
-  expenseData: any[]; // Replace `any[]` with the correct type for your expense data
+  expenseData: any[];
+  setExpenseData: React.Dispatch<React.SetStateAction<any[]>>; // Replace `any[]` with the correct type for your expense data
   getExpenses: () => Promise<void>;
   loading: boolean;
 }
@@ -53,7 +54,7 @@ export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => 
   }, []);
 
   return (
-    <ExpenseContext.Provider value={{ expenseData, getExpenses, loading }}>
+    <ExpenseContext.Provider value={{ expenseData,setExpenseData, getExpenses, loading }}>
       {children}
     </ExpenseContext.Provider>
   );
