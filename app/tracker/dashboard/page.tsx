@@ -89,7 +89,7 @@ export default function DashboardPage() {
     setFilteredExpenses(filtered);
   }, [date]);
 
-  console.log("Filtered expenses =-=-=-===> ", filteredExpenses);
+  const totalExpense = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0)
   return (
     <div className="container mx-auto p-4 space-y-6">
       <Card className="bg-[#2d98d6]">
@@ -101,7 +101,7 @@ export default function DashboardPage() {
                 <Banknote />
                 Total Spent
               </div>
-              <div className="text-4xl font-extrabold "> Rs. 54,320 </div>
+              <div className="text-4xl font-extrabold "> Rs. {totalExpense } </div>
             </div>
             <div className="flex gap-3 items-center md:items-end">
               <Popover>
@@ -212,7 +212,7 @@ export default function DashboardPage() {
 
 
       <div className="grid gap-6 md:grid-cols-2">
-        <ExpenseOverview />
+        <ExpenseOverview expenseData={filteredExpenses} />
         <ExpenseCategories />
       </div>
       <MonthlyComparison />

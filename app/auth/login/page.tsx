@@ -41,7 +41,7 @@ export default function Login() {
             });
             setLoading(false);
             const data = await response.json();
-
+            console.log("data=>", data)
             if (response.ok) {
                 router.push('/tracker');
                 Cookies.set('kharcha_token', data.token);
@@ -49,6 +49,7 @@ export default function Login() {
                 toast({ title: "Error !", description: data.error, variant: "destructive" });
             }
         }catch (error: any) {
+            console.log(error)
             toast({ title: "Error !", description: error.message, variant: "destructive" });
         }
     };
