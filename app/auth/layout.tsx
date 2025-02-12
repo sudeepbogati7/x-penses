@@ -29,11 +29,11 @@ export default function RootLayout({
         <>
             <div className="min-h-screen overflow-y-auto flex flex-col justify-center md:flex-row ">
                 {/* Illustration Side */}
-                <div className='w-full md:w-3/4 ' style={{ backgroundImage: 'url(/epense_ai.webp)' }} >
+                <div className='w-full md:w-3/4 bg-[#3d9ce3]' >
                     <div className="w-full h-full flex items-center card justify-center p-8" >
                         <div className=''>
                             <div className="text-white ">
-                                <h1 className="text-4xl font-bold mb-3">Track Your <span className='text-[#3d9ce3]'>Expenses</span></h1>
+                                <h1 className="text-4xl font-bold mb-3">Track Your <span className='text-[#59b4fa]'>Expenses</span></h1>
                                 <p className="mb-8 text-gray-100">Gain control of your finances with our powerful expense tracking system.</p>
                                 <div className="grid grid-cols-2 gap-4">
                                     <FeatureIcon Icon={DollarSign} text="Budget Management" />

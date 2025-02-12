@@ -213,10 +213,10 @@ export default function DashboardPage() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <ExpenseOverview expenseData={filteredExpenses} />
-        <ExpenseCategories />
+        <ExpenseCategories expenseData={filteredExpenses} />
       </div>
-      <MonthlyComparison />
-      <RecentTransactions />
+      <MonthlyComparison expenseData={filteredExpenses} />
+      {/* <RecentTransactions /> */}
     </div>
   )
 }
