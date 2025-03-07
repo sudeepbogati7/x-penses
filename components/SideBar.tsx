@@ -21,7 +21,6 @@ import {
 const menuItems = [
   { icon: ViewIcon, label: "Overview", href: '/tracker' },
   { icon: LayoutDashboard, label: 'Dashboard', href: '/tracker/dashboard' },
-  { icon: BarChart2, label: 'Analytics', href: '#' },
   { icon: FileText, label: 'Reports', href: '#' },
   { icon: Settings, label: 'Settings', href: '#' },
 ]
