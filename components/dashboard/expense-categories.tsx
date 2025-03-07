@@ -12,7 +12,7 @@ type ExpenseDataTypes = {
   created_at: string;
 };
 
-type DashboardStatsProps = {
+type DashboardStatsProps = {  
   expenseData: ExpenseDataTypes[];
 };
 
