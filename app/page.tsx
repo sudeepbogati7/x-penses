@@ -11,7 +11,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <Navbar bgColor="bg-transparent" />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#dce9f2] via-[#c3e2f7]  to-white-100">
+      <section className="relative min-h-screen  flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#dce9f2] via-[#c3e2f7]  to-white-100">
         {/* <div className="absolute inset-0">
           <Image
             src="/investing.svg"

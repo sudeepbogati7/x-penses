@@ -54,11 +54,11 @@ export default function Navbar({bgColor} : any) {
   console.log("is scrolled ==> ", isScrolled)
   return (
     <nav className={`fixed w-full py-2 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : `${bgColor}`}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" mx-auto w-full lg:w-5/6 px-4 md:px-0 ">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center ">
-            <Link href="/" className="flex-shrink-0  w-full">
-             <Image  src="/logo/kharcha-logo.svg" width={120} height={120} alt='logo'></Image>
+            <Link href="/" className=" w-full flex items-center">
+             <Image  src="/logo/kharcha-logo.svg" width={120} height={120} alt='logo'></Image> <span className='mt-2 font-medium text-purple-700 bg-purple-200 px-2 rounded-md text-sm'>Beta</span>
               {/* <span className={`text-xl font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-600'}`}>ExpenseTracker</span> */}
             </Link>
           </div>
@@ -115,13 +115,19 @@ export default function Navbar({bgColor} : any) {
               ))}
             </div>
           </div>
-          <div className="hidden md:block">
+          <div className="hidden  md:flex gap-8">
+          <Link
+              href="/auth/login"
+              className={`px-4 py-2 text-sky-700  hover:bg-sky-700 hover:text-white border-2 border-sky-600  rounded-md text-sm font-medium transition-colors duration-300`}
+            >
+              Login
+            </Link>
             <Link
               href="/auth/register"
               className={`px-4 py-2 rounded-md text-sm font-medium ${
                 isScrolled
-                  ? 'bg-[#0082d9] text-white hover:bg-[#0082d9]'
-                  : 'bg-blue-200 text-[#0082d9] hover:text-white hover:bg-[#0082d9]'
+                  ? 'bg-[#0082d9] text-white hover:bg-sky-200'
+                  : 'bg-sky-300 text-sky-900 hover:text-white hover:bg-[#0082d9]'
               } transition-colors duration-300`}
             >
               Sign Up

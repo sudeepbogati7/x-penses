@@ -5,7 +5,7 @@ import { ExpenseOverview } from "@/components/dashboard/expense-overview"
 import { ExpenseCategories } from "@/components/dashboard/expense-categories"
 import { MonthlyComparison } from "@/components/dashboard/monthly-comparison"
 import { RecentTransactions } from "@/components/dashboard/recent-transactions"
-import { useState } from "react"
+import { useState } from "react";
 import { CalendarIcon, Filter } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
