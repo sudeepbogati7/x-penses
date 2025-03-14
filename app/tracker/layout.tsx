@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         if (!Cookies.get("kharcha_token")) {
             router.push("/auth/login");
         }
-    }, []);
+    }, [router]);
 
     return (
         <div className="w-full h-full">

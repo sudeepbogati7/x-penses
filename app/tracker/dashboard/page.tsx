@@ -97,7 +97,7 @@ export default function DashboardPage() {
 
     console.log("Filtered Expenses:", filtered); // Debugging filtered data
     setFilteredExpenses(filtered);
-  }, [date]);
+  }, [expenseData,date]);
 
   const totalExpense = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0)
   return (

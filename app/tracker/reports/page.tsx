@@ -22,8 +22,8 @@ import {
 } from "@/components/ui/select"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
-import { Calendar, FileText, Search } from "lucide-react"
-
+import {  FileText, Search } from "lucide-react"
+import { Calendar } from "@/components/ui/calendar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useExpenseContext } from "@/components/ExpenseContext"
@@ -183,12 +183,16 @@ export default function Page() {
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-auto p-0">
-                            <Calendar
-                              mode="single"
-                              selected={date}
-                              onSelect={(selectedDate: Date | undefined) => setDate(selectedDate)}
-                              initialFocus
-                            />
+                          <Calendar 
+                            mode="single"
+                            selected={date}
+                            onSelect={(selectedDate: Date | undefined) => {
+                              if (selectedDate instanceof Date) {
+                                setDate(selectedDate)
+                              }
+                            }}
+                            initialFocus
+                          />
                           </PopoverContent>
                         </Popover>
                         <Popover>
