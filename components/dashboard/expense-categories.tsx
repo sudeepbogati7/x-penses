@@ -43,9 +43,7 @@ export const ExpenseCategories: FC<DashboardStatsProps> = ({ expenseData }) => {
       position: "bottom" as const, // Position the legend at the bottom
       fontSize: "14px",
       markers: {
-        width: 12,
-        height: 12,
-        radius: 12, // Make legend markers circular
+        size: 12,
       },
     },
     dataLabels: {
