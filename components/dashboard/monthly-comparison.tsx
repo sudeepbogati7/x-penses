@@ -1,6 +1,7 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { FC } from "react";
 
 type ExpenseDataTypes = {
@@ -50,7 +51,7 @@ export const MonthlyComparison: FC<MonthlyComparison> = ({ expenseData }) => {
   // Prepare data for ApexCharts
   const chartOptions = {
     chart: {
-      type: "bar",
+      type: "bar" as "bar",
       toolbar: {
         show: false, // Hide toolbar (download, etc.)
       },

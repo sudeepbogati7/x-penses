@@ -20,7 +20,7 @@ import { Sidebar } from "@/components/ui/sideBar";
 
 // var API_URL = "https://expense-tracking-system.onrender.com/api"
 
-var API_URL = "http://localhost:3001/api"
+var API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 
 export default function Home() {

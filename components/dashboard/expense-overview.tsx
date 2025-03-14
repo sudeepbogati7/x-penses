@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import ReactApexChart from "react-apexcharts";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 type ExpenseDataTypes = {
   createdAt: string | number | Date;
@@ -60,7 +61,7 @@ export const ExpenseOverview: React.FC<DashboardStatsProps> = ({ expenseData }) 
       enabled: false, // Disable data labels on the chart
     },
     stroke: {
-      curve: "smooth", // Smooth curve for the area chart
+      curve: "smooth" as "smooth", // Smooth curve for the area chart
     },
     tooltip: {
       y: {

@@ -34,7 +34,7 @@ export const expenseCategories: ExpenseCategory[] = [
 
 
 // Load API URL from environment variable
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+var API_URL = process.env.NEXT_PUBLIC_API_URL
 import { useToast } from "@/hooks/use-toast"
 
 import { useExpenseContext } from "./ExpenseContext"

@@ -8,6 +8,7 @@ import { useResponseData } from '@/components/ResponseData';
 import { useRouter,useSearchParams } from 'next/navigation';
 import { SuccessNotification, ErrorNotification } from '@/components/Notifications';
 import Loading from '@/app/loading';
+var API_URL = process.env.NEXT_PUBLIC_API_URL;
 export default function Login() {
     const params = useSearchParams();
     const {responseData, setResponseData} = useResponseData();
@@ -29,7 +30,7 @@ export default function Login() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:3001/api/user/forget-password/reset', {
+            const response = await fetch(`${API_URL}/user/forget-password/reset`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

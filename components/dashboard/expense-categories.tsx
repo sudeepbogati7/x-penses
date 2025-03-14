@@ -1,6 +1,7 @@
 "use client";
+import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import ReactApexChart from "react-apexcharts";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { FC } from "react";
 
 type ExpenseDataTypes = {

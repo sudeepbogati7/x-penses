@@ -17,7 +17,7 @@ import { useResponseData } from '@/components/ResponseData';
 import { ArrowLeft } from 'lucide-react';
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 
-var API_URL = "http://localhost:3001/api"
+var API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import { useToast } from '@/hooks/use-toast';
 

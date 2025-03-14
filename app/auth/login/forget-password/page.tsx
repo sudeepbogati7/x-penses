@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { ErrorNotification, SuccessNotification } from '@/components/Notifications';
 import Loading from '@/app/loading';
 import { useResponseData } from '@/components/ResponseData';
-
+var API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Login() {
     const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ export default function Login() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:3001/api/user/forget-password', {
+            const response = await fetch(`${API_URL}/user/forget-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

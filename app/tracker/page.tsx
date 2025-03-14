@@ -35,7 +35,7 @@ const categoryColors: any = {
   Other: 'bg-gray-100 text-gray-800',
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+var API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import { useExpenseContext } from "@/components/ExpenseContext";
 import { ExpenseTrackerSkeleton } from '@/components/overviewSkeleton';

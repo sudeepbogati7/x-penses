@@ -12,7 +12,7 @@ import { useToast } from "@/hooks/use-toast"
 import { Loader2 } from "lucide-react"
 
 // var API_URL = "https://expense-tracking-system.onrender.com/api"
-var API_URL = "http://localhost:3001/api"
+var API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Login() {
   const router = useRouter()
