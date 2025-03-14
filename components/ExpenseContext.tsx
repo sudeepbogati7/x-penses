@@ -22,7 +22,7 @@ export const ExpenseProvider = ({ children }: { children: React.ReactNode }) => 
     const startTime = Date.now();
 
     try {
-      const response = await fetch(`${API_URL}expenses/my-expenses`, {
+      const response = await fetch(`${API_URL}/expenses/my-expenses`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
