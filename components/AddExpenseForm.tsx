@@ -58,7 +58,7 @@ export function AddExpenseForm({ open, setOpen }: { open: boolean; setOpen: (ope
     // Send data to API
     try{
         setLoading(true);
-        const response = await fetch (`${API_URL}expenses/add`,{
+        const response = await fetch (`${API_URL}/expenses/add`,{
             method : 'POST',
             headers: {
               "Authorization": `Bearer ${kharcha_token}`,
